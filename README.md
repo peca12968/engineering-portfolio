@@ -1,9 +1,10 @@
 # peca12968｜軟體工程作品集
 
-十一個可以從原始碼跑到測試的工程作品。後端與平台工程可從庫存交易、備份還原、Go 並行快取或背景工作佇列開始，全端工程可操作發布預演，或從跨時區日誌一路看到瀏覽器裡的服務指標。搜尋工程則可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
+十二個可以從原始碼跑到測試的工程作品。後端與平台工程可從庫存交易、備份還原、Go 並行快取或背景工作佇列開始。資料工程可用物流掃描重現亂序與晚到事件，全端工程可從跨時區日誌一路看到瀏覽器裡的服務指標。搜尋工程則可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Parcel Event Windows](https://github.com/peca12968/parcel-event-windows) | Java、串流處理、事件時間視窗 | 8 筆物流掃描中，5 筆計入逐站統計，另外 3 筆分別為重送、衝突與結算後晚到。用獨立的 Python 實作比對 1,200 筆輸入的視窗結果與拒收紀錄。 | [實作](https://github.com/peca12968/parcel-event-windows/blob/c1a67e3d1bb8f9892954a4e3984995536dd07d93/src/ParcelWindows.java) · [測試](https://github.com/peca12968/parcel-event-windows/blob/c1a67e3d1bb8f9892954a4e3984995536dd07d93/test_cli.py) · [CI](https://github.com/peca12968/parcel-event-windows/actions/runs/45008312822) |
 | [SQLite Recovery Drill](https://github.com/peca12968/sqlite-recovery-drill) | Python、SQLite WAL、備份與復原 | 最新備份還原出 20 件庫存，損壞後改用前一版，還原出 13 件並列出復原時間與略過原因。若前一版已早於可接受的時間界線，工具會停止還原。 | [實作](https://github.com/peca12968/sqlite-recovery-drill/blob/68894292e7a1ca7eb9f1b5986668bd2efcd61a6c/recovery.py) · [測試](https://github.com/peca12968/sqlite-recovery-drill/blob/68894292e7a1ca7eb9f1b5986668bd2efcd61a6c/test_recovery.py) · [CI](https://github.com/peca12968/sqlite-recovery-drill/actions/runs/45007847422) |
 | [Coalesced Cache](https://github.com/peca12968/coalesced-cache) | Go、並行控制、LRU、HTTP | 12 位讀者同時查價只觸發 1 次來源讀取。商品服務回傳 503 時，第 10 秒可取得標記為 stale 的價格，第 15 秒寬限期結束後回傳錯誤。 | [實作](https://github.com/peca12968/coalesced-cache/blob/32096c1d52b06a579ea35aa11aec31dfd7305023/cache.go) · [測試](https://github.com/peca12968/coalesced-cache/blob/32096c1d52b06a579ea35aa11aec31dfd7305023/cache_test.go) · [CI](https://github.com/peca12968/coalesced-cache/actions/runs/45006506648) |
 | [Overlap Hours](https://github.com/peca12968/overlap-hours) | C#、ASP.NET Core、時區與區間運算 | 台北與紐約的週期班表有兩個 30 分鐘空檔，指定當地臨時班表後剩一個，整日休假則為零。HTTP 測試也涵蓋跨午夜夜班與夏令時間重複的 01:00。 | [實作](https://github.com/peca12968/overlap-hours/blob/e4f4c6cd987381940337af447699164cb6b7aac6/src/Planner.cs) · [測試](https://github.com/peca12968/overlap-hours/blob/e4f4c6cd987381940337af447699164cb6b7aac6/test_api.py) · [CI](https://github.com/peca12968/overlap-hours/actions/runs/45006023528) |
