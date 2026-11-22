@@ -1,9 +1,10 @@
 # peca12968｜軟體工程作品集
 
-六個可以從原始碼跑到測試的工程作品。應徵後端或平台職務時，可以從庫存交易與背景工作佇列開始；應徵全端或資料工具職務時，可以從跨時區日誌一路看到瀏覽器裡的服務指標。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
+七個可以從原始碼跑到測試的工程作品。後端與平台工程可從庫存交易和背景工作佇列開始，全端工程可從跨時區日誌一路看到瀏覽器裡的服務指標。搜尋工程則可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Handbook Search](https://github.com/peca12968/handbook-search) | Python、SQLite FTS5、BM25 | 13 題合成問題中有 12 題的第一名命中相關段落。可查閱中英文結果的原文行號，以及剩下一題跨語言詞彙未命中的原因。 | [實作](https://github.com/peca12968/handbook-search/blob/5af290407411abe1f2282bcae8f8149a27815c4c/handbook.py) · [測試](https://github.com/peca12968/handbook-search/blob/5af290407411abe1f2282bcae8f8149a27815c4c/test_handbook.py) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45004005399) |
 | [Relay Job Queue](https://github.com/peca12968/relay-job-queue) | Node.js、PostgreSQL | 12 個送件端同時重送，資料庫仍只建立一筆工作。工作者中斷後，接手者取得新租約，遲到的舊結果會被拒絕。 | [實作](https://github.com/peca12968/relay-job-queue/blob/349baa8e6e9067323423d9ea875666db8ef45534/queue.js) · [測試](https://github.com/peca12968/relay-job-queue/blob/349baa8e6e9067323423d9ea875666db8ef45534/test/queue.test.js) · [CI](https://github.com/peca12968/relay-job-queue/actions/runs/45003581826) |
 | [Stockroom Reservations](https://github.com/peca12968/stockroom-reservations) | Python、FastAPI、SQLite | 庫存 20 件，24 筆請求各搶 2 件，驗證只有 10 筆成功。也驗證取消與到期回收同時發生時只歸還一次。 | [實作](https://github.com/peca12968/stockroom-reservations/blob/1bec99199cf0ee8ed9d9b3d34ddbaad10dc01930/stockroom/store.py) · [測試](https://github.com/peca12968/stockroom-reservations/blob/1bec99199cf0ee8ed9d9b3d34ddbaad10dc01930/tests/test_api.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45002616288) |
 | [Payout Ledger](https://github.com/peca12968/payout-ledger) | Python、SQL | 比較兩份入帳快照，區分新增、持續待查、已結清與從來源消失的差異，保留每種幣別的金額。 | [實作](https://github.com/peca12968/payout-ledger/blob/6c1e51cb1e526000513c5bf985269501f9b0cd92/ledger.py) · [測試](https://github.com/peca12968/payout-ledger/blob/6c1e51cb1e526000513c5bf985269501f9b0cd92/test_ledger.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45003050000) |
