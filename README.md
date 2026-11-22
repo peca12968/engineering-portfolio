@@ -1,9 +1,10 @@
 # peca12968｜軟體工程作品集
 
-十九個可以從原始碼跑到測試的工程作品。全端工程可用交班簿的兩個分頁重現編輯衝突，從畫面上保留的草稿追到 SQLite 的版本紀錄。後端與平台工程可從庫存交易、Kubernetes 部署或備份還原開始，也可用結帳追蹤分析服務呼叫的重疊時間。揀貨路線規劃器可以展示圖搜尋與最佳化。資料工程可用交貨回條示範新舊格式互讀，或用物流掃描重現亂序與晚到事件。搜尋工程可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
+二十個可以從原始碼跑到測試的工程作品。全端工程可用交班簿的兩個分頁重現編輯衝突，從畫面上保留的草稿追到 SQLite 的版本紀錄。後端與平台工程可從庫存交易、Kubernetes 部署或備份還原開始，也可用結帳追蹤分析服務呼叫的重疊時間。揀貨路線規劃器可以展示圖搜尋與最佳化。資料工程可用交貨回條示範新舊格式互讀，或用物流掃描重現亂序與晚到事件。搜尋工程可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Slot Calendar](https://github.com/peca12968/slot-calendar) | Python、iCalendar、跨服務整合測試 | 從排班 API 的四個候選選出一場 45 分鐘會議，匯出三位出席者的當地時間。用獨立解析器核對 UTC 起訖，也驗證紐約回撥時兩個 01:00 的差異。 | [實作](https://github.com/peca12968/slot-calendar/blob/fb548e99f9133481f475072f27ea64ca9f403e84/slot_calendar.py) · [測試](https://github.com/peca12968/slot-calendar/blob/fb548e99f9133481f475072f27ea64ca9f403e84/test_calendar.js) · [CI](https://github.com/peca12968/slot-calendar/actions/runs/45015763611) |
 | [Range Fetch](https://github.com/peca12968/range-fetch) | C#、.NET、HTTP Range、SHA-256 | 262,144 位元組的檔案在傳輸 65,536 位元組後斷線。第二個程序只下載剩餘的 196,608 位元組，核對整份檔案後替換舊版；另驗證來源換版與兩個程序同時下載。 | [實作](https://github.com/peca12968/range-fetch/blob/901c627bafd51a88cae08ce246fcfef40a2e583b/src/Download.cs) · [測試](https://github.com/peca12968/range-fetch/blob/901c627bafd51a88cae08ce246fcfef40a2e583b/test_download.py) · [CI](https://github.com/peca12968/range-fetch/actions/runs/45014914733) |
 | [Trace Time](https://github.com/peca12968/trace-time) | Python、OpenTelemetry、Protobuf、區間掃描 | 結帳耗時 120 ms，庫存與付款各用 60 ms。從兩批 SDK 匯出資料算出兩者合計覆蓋 90 ms、重疊 30 ms，重送下游批次仍得到相同時間。另以 500 組時間軸核對計算。 | [實作](https://github.com/peca12968/trace-time/blob/2aeffefa43fc6641e227cf9a0db652b697cd3bf1/trace_time.py) · [測試](https://github.com/peca12968/trace-time/blob/2aeffefa43fc6641e227cf9a0db652b697cd3bf1/test_trace_time.py) · [CI](https://github.com/peca12968/trace-time/actions/runs/45014003775) |
 | [Delivery Archive](https://github.com/peca12968/delivery-archive) | Python、Apache Avro、資料契約 | 把早晚班兩種格式的 3 筆交貨回條合併成一份報表。兩套 Avro 實作交叉驗證 4 種讀寫版本配對，批次的第二個檔案不相容或遭截斷時，保留上一批完整輸出。 | [實作](https://github.com/peca12968/delivery-archive/blob/5a8bbbf7e3502601c6df3a39c4989c5d3561e97b/archive.py) · [測試](https://github.com/peca12968/delivery-archive/blob/5a8bbbf7e3502601c6df3a39c4989c5d3561e97b/test_archive.py) · [CI](https://github.com/peca12968/delivery-archive/actions/runs/45013158126) |
@@ -31,6 +32,8 @@
 **全端與資料工具**　用 Access Log Rollup 對同一批輪替日誌產生兩份報表，依序在 SLO Window 匯入。第一份逐行計數，畫面顯示 7 個請求與 57.143% 可用率。第二份按請求 ID 去重，顯示 5 個請求與 60.000%。展開逐日數值可看到 5 月 3 日仍缺資料。兩份報表都由固定版本的 CLI 產生並由瀏覽器測試核對。
 
 **資料一致性與開發工具**　執行 Payout Ledger 的兩次對帳，在第二次加入 `--explain`。沿著入帳 ID 檢查哪三筆新增、哪一筆從來源消失，再核對它們如何合計為 7 美元的變動。CI Impact Planner 則可用一份相依圖展示如何避免漏測下游套件，適合討論測試策略與建置流程。
+
+**跨服務互通**　在 Overlap Hours 查詢台北與紐約的 45 分鐘交班，再用 Slot Calendar 選取台北 21:30 的候選。打開匯出的行事曆，核對紐約 08:30 與三位出席者，再執行整合測試，觀察兩個看似相同的紐約 01:00 如何因夏令時間回撥而對應不同時刻。
 
 **搜尋與品質評估**　在 Handbook Search 用同一份索引查「背景執行者當機由誰接手」，分別執行預設查詢與詞彙表查詢。打開第一筆結果的原文行號核對答案，再執行評估，比較每題找回多少相關段落，以及第一個相關段落排第幾。
 
