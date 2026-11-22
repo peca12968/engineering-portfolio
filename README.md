@@ -1,6 +1,15 @@
 # peca12968｜軟體工程作品集
 
-五十六個可以從原始碼跑到測試的工程作品。前端工程可從主題換色後的文字對比開始，在兩種瀏覽器逐項核對。全端工程可在離線收貨工作臺重現回覆遺失後的安全重送，或用交班簿的兩個分頁追查編輯衝突。後端與平台工程可從庫存交易、Kubernetes 部署或備份還原開始，也可用多租戶轉檔案例展示不同工作成本下的派工份額。演算法作品可用還車站搜尋展示空間索引，也可用揀貨路線規劃器展示圖搜尋與最佳化。資料工程可用交貨回條示範新舊格式互讀、用物流掃描重現晚到事件，或合併兩站訪客摘要並量測估算誤差。搜尋與機器學習可從手冊檢索的逐題排名、中文工單分流的精確率與覆蓋率開始。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
+目前收錄 **56** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+
+## 依職缺挑一個作品開始
+
+- **後端工程**　同一筆保留分兩箱出貨，其中一件又退回倉庫。用 FastAPI 與 SQLite 查整單，並驗證另一個服務實例同時寫入時，各箱加總仍與整單一致。[Stockroom Reservations](https://github.com/peca12968/stockroom-reservations)
+- **前端工程**　以 11 步鍵盤操作重現封存文件後的焦點遺失，在 Chromium 與 Firefox 核對修正後的焦點順序。[Focus Receipt](https://github.com/peca12968/focus-receipt)
+- **資料與實驗工程**　整體分流剛好 16 比 16，按平台拆開卻都偏向單一版本。從使用者去重、精確二項檢定一路追到多重比較校正。[Exposure Audit](https://github.com/peca12968/exposure-audit)
+- **平台與可靠性工程**　在 SQLite 持續寫入時取兩個備份，用逐筆比對核對還原結果，再模擬新版資料塊損壞，驗證較早的備份仍可還原。[SQLite Recovery Drill](https://github.com/peca12968/sqlite-recovery-drill)
+
+## 完整作品清單
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
@@ -55,7 +64,7 @@
 | [Rollout Lab](https://github.com/peca12968/rollout-lab) | JavaScript、Web Crypto、功能發布、Playwright | 核對六筆上線決策。基準階段收到 A 和 B 的人數都正確，逐人重算後找到兩個版本對調的帳號。亦能預演擴量與回退的受影響範圍。 | [實作](https://github.com/peca12968/rollout-lab/blob/de4fd39d083ea6c2143684d2723a913686da7b45/reconcile.js) · [測試](https://github.com/peca12968/rollout-lab/blob/de4fd39d083ea6c2143684d2723a913686da7b45/test/reconcile.test.js) · [CI](https://github.com/peca12968/rollout-lab/actions/runs/45079589934) |
 | [Handbook Search](https://github.com/peca12968/handbook-search) | Python、SQLite FTS5、BM25 | 手冊改版、改名及刪頁後，新核准規則指到第 14 行，退役詞命中為零。原樣重跑沿用全部三份文件；另以 32 次連續修訂核對增量索引與完整重建的排名、內容及行號。 | [實作](https://github.com/peca12968/handbook-search/blob/2d7263d598ae919f2ed6504c0712b0427fdf535e/handbook.py) · [測試](https://github.com/peca12968/handbook-search/blob/2d7263d598ae919f2ed6504c0712b0427fdf535e/test_sync.py) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45016199320) |
 | [Relay Job Queue](https://github.com/peca12968/relay-job-queue) | Node.js、PostgreSQL、租約與故障復原 | 對重試耗盡的工作同時送出 12 次重排，只產生一張收據。8 個工作者競爭時僅一人取得新租約。即使下一輪再失敗，重送上一輪指令仍只讀回原收據。 | [實作](https://github.com/peca12968/relay-job-queue/blob/cef3d4494bb87f9a381061bc4eab7074e36f2bad/queue.js) · [測試](https://github.com/peca12968/relay-job-queue/blob/cef3d4494bb87f9a381061bc4eab7074e36f2bad/test/queue.test.js) · [CI](https://github.com/peca12968/relay-job-queue/actions/runs/45058519400) |
-| [Stockroom Reservations](https://github.com/peca12968/stockroom-reservations) | FastAPI、SQLite、庫存交易與並行控制 | 保留 8 件、寄出 3 件、釋放 2 件後，3 件仍可出貨。減量單可跨重啟重送。兩個 API 實例爭用最後 6 件時，16 個減量或出貨請求合計只成功 6 筆。 | [實作](https://github.com/peca12968/stockroom-reservations/blob/887c505c36a15ba3a487962bbf27755bd59c6d01/stockroom/store.py) · [測試](https://github.com/peca12968/stockroom-reservations/blob/887c505c36a15ba3a487962bbf27755bd59c6d01/tests/test_api.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45077082577) |
+| [Stockroom Reservations](https://github.com/peca12968/stockroom-reservations) | FastAPI、SQLite、庫存交易與並行控制 | 保留 10 件，分兩箱寄出 5 件、退貨入庫 1 件，仍可退 4 件。整單查詢亦列出未出貨就已釋放的 5 件。以兩個服務實例同時出退貨及查詢，核對每份快照。 | [實作](https://github.com/peca12968/stockroom-reservations/blob/909fc60996920a113036152f3521dca9f723a83b/stockroom/store.py) · [測試](https://github.com/peca12968/stockroom-reservations/blob/909fc60996920a113036152f3521dca9f723a83b/tests/test_api.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45080570737) |
 | [Payout Ledger](https://github.com/peca12968/payout-ledger) | Python、SQL、整數金額對帳 | 將兩份入帳快照的 USD 差額從 −31.50 到 −24.50 的變動追溯至四筆來源列，逐筆合計 +7.00。另驗證退款、換幣別與改列訂單時的兩側金額。 | [實作](https://github.com/peca12968/payout-ledger/blob/448f67b5f4c85f865c033cdd58be1e0509801e4d/ledger.py) · [測試](https://github.com/peca12968/payout-ledger/blob/448f67b5f4c85f865c033cdd58be1e0509801e4d/test_ledger.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45010668878) |
 | [Access Log Rollup](https://github.com/peca12968/access-log-rollup) | C#、.NET | 兩份輪替日誌共 7 行，依請求 ID 與 UTC 時間核對後得到 5 個請求。相同 ID 的時間或狀態碼衝突時，回報兩個來源的行號並停止輸出。 | [實作](https://github.com/peca12968/access-log-rollup/blob/f0598db162c034eb5755b2bd8e61b562b23896ff/src/Program.cs) · [測試](https://github.com/peca12968/access-log-rollup/blob/f0598db162c034eb5755b2bd8e61b562b23896ff/test_cli.py) · [CI](https://github.com/peca12968/access-log-rollup/actions/runs/45008672534) |
 | [SLO Window](https://github.com/peca12968/slo-window) | React、TypeScript、Playwright | 匯入日誌彙總的 CSV，比較相鄰兩期的請求加權可用率。28 天範例顯示本期提高 0.083 個百分點，任一期缺少日期時可逐日檢視缺口。 | [實作](https://github.com/peca12968/slo-window/blob/8fdc38c3bedd2c748a22298be83f574b8aa049d0/src/metrics.ts) · [測試](https://github.com/peca12968/slo-window/blob/8fdc38c3bedd2c748a22298be83f574b8aa049d0/browser-tests/dashboard.spec.ts) · [CI](https://github.com/peca12968/slo-window/actions/runs/45008787370) |

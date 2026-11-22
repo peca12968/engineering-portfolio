@@ -41,9 +41,15 @@ def main():
     rows = table[1:]  # The first line contains Markdown column separators.
     if not rows:
         raise ValueError("No portfolio rows found")
+    count = re.search(r"目前收錄 \*\*(\d+)\*\* 個", text)
+    if count and int(count[1]) != len(rows):
+        raise ValueError(f"Introduction says {count[1]} projects but the table contains {len(rows)}")
     projects = [verify(row) for row in rows]
     if len(set(projects)) != len(projects):
         raise ValueError("Duplicate project row")
+    unlisted = set(REPO.findall(text)) - set(projects)
+    if unlisted:
+        raise ValueError(f"Project links without a verified portfolio row: {sorted(unlisted)}")
 
 
 if __name__ == "__main__":
