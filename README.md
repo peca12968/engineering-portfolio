@@ -1,9 +1,10 @@
 # peca12968｜軟體工程作品集
 
-十個可以從原始碼跑到測試的工程作品。後端與平台工程可從庫存交易、Go 並行快取或背景工作佇列開始，全端工程可操作發布預演，或從跨時區日誌一路看到瀏覽器裡的服務指標。搜尋工程則可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
+十一個可以從原始碼跑到測試的工程作品。後端與平台工程可從庫存交易、備份還原、Go 並行快取或背景工作佇列開始，全端工程可操作發布預演，或從跨時區日誌一路看到瀏覽器裡的服務指標。搜尋工程則可執行手冊檢索的品質評估，檢視每題的排名與原文。每一列的實作與測試都連到右側 CI 實際驗證的提交版本。
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [SQLite Recovery Drill](https://github.com/peca12968/sqlite-recovery-drill) | Python、SQLite WAL、備份與復原 | Stockroom 保留 7 件後備份，再取消訂單。原服務顯示 20 件，還原的服務顯示 13 件；重送原訂單維持 13 件，解除保留後回到 20 件。 | [實作](https://github.com/peca12968/sqlite-recovery-drill/blob/f3c189c7f3f78fc70610ff829443719f1d79a132/recovery.py) · [測試](https://github.com/peca12968/sqlite-recovery-drill/blob/f3c189c7f3f78fc70610ff829443719f1d79a132/test_recovery.py) · [CI](https://github.com/peca12968/sqlite-recovery-drill/actions/runs/45007500607) |
 | [Coalesced Cache](https://github.com/peca12968/coalesced-cache) | Go、並行控制、LRU、HTTP | 12 位讀者同時查價只觸發 1 次來源讀取。商品服務回傳 503 時，第 10 秒可取得標記為 stale 的價格，第 15 秒寬限期結束後回傳錯誤。 | [實作](https://github.com/peca12968/coalesced-cache/blob/32096c1d52b06a579ea35aa11aec31dfd7305023/cache.go) · [測試](https://github.com/peca12968/coalesced-cache/blob/32096c1d52b06a579ea35aa11aec31dfd7305023/cache_test.go) · [CI](https://github.com/peca12968/coalesced-cache/actions/runs/45006506648) |
 | [Overlap Hours](https://github.com/peca12968/overlap-hours) | C#、ASP.NET Core、時區與區間運算 | 台北與紐約的週期班表有兩個 30 分鐘空檔，指定當地臨時班表後剩一個，整日休假則為零。HTTP 測試也涵蓋跨午夜夜班與夏令時間重複的 01:00。 | [實作](https://github.com/peca12968/overlap-hours/blob/e4f4c6cd987381940337af447699164cb6b7aac6/src/Planner.cs) · [測試](https://github.com/peca12968/overlap-hours/blob/e4f4c6cd987381940337af447699164cb6b7aac6/test_api.py) · [CI](https://github.com/peca12968/overlap-hours/actions/runs/45006023528) |
 | [Rollout Lab](https://github.com/peca12968/rollout-lab) | JavaScript、Web Crypto、Python、Playwright | 將結帳頁開放比例由 10% 調至 25%。1,000 個固定示範帳號中新增 153 個，原有帳號維持版本；也能逐一查看回退與調整配比時的結果。 | [實作](https://github.com/peca12968/rollout-lab/blob/d728e116088cdfea84ab593bc5957be5453626dc/web/rollout.js) · [測試](https://github.com/peca12968/rollout-lab/blob/d728e116088cdfea84ab593bc5957be5453626dc/test/rollout.test.js) · [CI](https://github.com/peca12968/rollout-lab/actions/runs/45004825161) |
