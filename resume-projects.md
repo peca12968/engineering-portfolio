@@ -4,7 +4,7 @@
 
 ### 測試工程｜Hold Model 庫存狀態模型測試
 
-以逐件追蹤去向的獨立模型核對兩個 FastAPI 實例，在 24 組可重播的操作中驗證續期、重送、部分出貨、取消與到期。1,152 步都符合模型預期。另注入到期漏還庫存的故障，將 8 步縮為 3 步，重現可用量應為 17 件卻只有 12 件的差異；刪除任一步，該差異就消失。[縮減與重播測試](https://github.com/peca12968/hold-model/blob/bb4bd5a5d80429a46e64a1fe03bb46a8055124dc/test_check.py) · [CI](https://github.com/peca12968/hold-model/actions/runs/45278528956)
+以獨立庫存模型核對 1,152 步操作，並擷取兩個 FastAPI 實例同時處理保留、部分取消、出貨與續期的請求。對每份紀錄搜尋符合實際起訖順序、收據內容與剩餘庫存的解釋。20 件庫存收到兩筆各 13 件的訂單時，可辨識兩筆均成功的合成反例。以三種實際競爭情境各跑五次，再以 160 份小型紀錄和枚舉全部排列的結果交叉驗證。[時序與並行驗證](https://github.com/peca12968/hold-model/blob/f69bb1ffb7592abf97713b4e58b578f112924ecd/test_history.py) · [CI](https://github.com/peca12968/hold-model/actions/runs/45279625800)
 
 ### 演算法工程｜Remit Match 無批號匯款追查
 
