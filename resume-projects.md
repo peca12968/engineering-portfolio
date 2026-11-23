@@ -16,7 +16,7 @@
 
 ### 交易系統｜Receipt Returns 部分退餐試算
 
-以 Python 和 SQLite 從成交收據還原每份餐點的套餐折扣，支援退餐預覽、分批登記與重送。用禾日食堂本機 Worker 建立全支付與 LINE Pay 示範收據，驗證單點及搭不同套餐的同一道菜可有三種實付價格。以 44 種分批順序核對 345 元餐單的每次金額，再以兩個獨立連線測試舊報價與最後一份的競爭條件。[分批與並行測試](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/test_returns.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45266726797)
+用 Python 與 SQLite 依成交收據分攤套餐折扣，支援分批退餐、撤銷與重送。以禾日食堂的全支付及 LINE Pay 示範單驗證更正較早一筆退餐後，能恢復正確的成交單價與套餐來源。六個連線重送同一撤銷時只恢復一份，六筆新登記競爭該份時也只有一筆成功。原始登記與更正理由均可查詢。[更正、舊帳升級與並行測試](https://github.com/peca12968/receipt-returns/blob/f8e4bef3beaa218f8891048fd64472108f6c6d19/test_voids.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45280626857)
 
 ### 後端工程｜Stockroom Reservations
 
