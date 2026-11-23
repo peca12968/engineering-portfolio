@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **79** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **80** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Batch Clock](https://github.com/peca12968/batch-clock) | Python、SQLite、工時量測、依時間切分驗證 | 用 20 批合成煎茶工時校準出餐估算，另以次日 4 批驗證。落在區間內由 1 批增至 3 批，最慢那批超出上界的時間也從 2 秒增至 7 秒。 | [實作](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/batch_clock.py) · [測試](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/test_batch_clock.py) · [CI](https://github.com/peca12968/batch-clock/actions/runs/45252370915) |
 | [Pickup Window](https://github.com/peca12968/pickup-window) | JavaScript、分站排程、離散事件模擬 | 依分站容量與批量試算新單。以 729 種工時組合獨立核對上下界；在禾日食堂 D1 演練中，前單出餐後，新單從等候 11–14 分鐘縮至 4–5 分鐘。 | [實作](https://github.com/peca12968/pickup-window/blob/1e86c05effd8ebd102ea92629df68dda6ab1bb6d/estimate.mjs) · [測試](https://github.com/peca12968/pickup-window/blob/1e86c05effd8ebd102ea92629df68dda6ab1bb6d/estimate.test.mjs) · [CI](https://github.com/peca12968/pickup-window/actions/runs/45250645551) |
 | [Pass Rail](https://github.com/peca12968/pass-rail) | Python、SQLite、HTTP、並行與故障復原 | 一張 A03 桌單分送熱台與飲品台。分站存單後強制終止配送程序，重啟查回原單。八個配送者競領時只送出一次，已停發的單據也能擋住遲到請求。 | [實作](https://github.com/peca12968/pass-rail/blob/e52bdb1468117899cf0b5c91d871208ae5ef6264/rail.py) · [測試](https://github.com/peca12968/pass-rail/blob/e52bdb1468117899cf0b5c91d871208ae5ef6264/test_rail.py) · [CI](https://github.com/peca12968/pass-rail/actions/runs/45244734428) |
 | [Table Shares](https://github.com/peca12968/table-shares) | Python、JavaScript BigInt、最小費用流 | 以獨立窮舉核對 240 張合成帳單，再逐格比對瀏覽器與 Python 的分帳結果。每人應付與每道菜的明細都能對回原收據。 | [實作](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/split.mjs) · [測試](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/test_split.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45241854623) |

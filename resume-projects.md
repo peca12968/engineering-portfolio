@@ -28,6 +28,8 @@
 
 以 JavaScript 排定廚房各站的製作批次，根據空位、已完成數量與鍋中剩餘時間估算何時可交整單。用獨立的逐秒模擬器窮舉 729 種工時組合，逐單核對最快、最慢完成時間，再用禾日食堂 Worker 和 D1 的店員匯出檔重跑同一支指令。[區間與窮舉驗證](https://github.com/peca12968/pickup-window/blob/1e86c05effd8ebd102ea92629df68dda6ab1bb6d/estimate.test.mjs) · [CI](https://github.com/peca12968/pickup-window/actions/runs/45250645551)
 
+以 Python 和 SQLite 記錄實作份數和每批耗時，按完成時間切分校準與驗證資料。八個程序同時開工只會有一個取得同一工作位。將 20 批合成煎茶工時匯入排程模型，保留次日四批獨立核對命中數與超時秒數。[批次工時與留後驗證](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/test_batch_clock.py) · [CI](https://github.com/peca12968/batch-clock/actions/runs/45252370915)
+
 ### 金流對帳｜Payout Ledger
 
 以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/78f01c6eb079f1d68fe8444f94342e419a6b1327/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45248921613)
