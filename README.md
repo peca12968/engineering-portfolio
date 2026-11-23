@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **78** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **79** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Pickup Window](https://github.com/peca12968/pickup-window) | JavaScript、分站排程、離散事件模擬 | 依分站容量與批量試算新單。以 729 種工時組合獨立核對上下界；在禾日食堂 D1 演練中，前單出餐後，新單從等候 11–14 分鐘縮至 4–5 分鐘。 | [實作](https://github.com/peca12968/pickup-window/blob/d4ddf360a1ba141a4a27039b8276425638127e70/estimate.mjs) · [測試](https://github.com/peca12968/pickup-window/blob/d4ddf360a1ba141a4a27039b8276425638127e70/estimate.test.mjs) · [CI](https://github.com/peca12968/pickup-window/actions/runs/45250062382) |
 | [Pass Rail](https://github.com/peca12968/pass-rail) | Python、SQLite、HTTP、並行與故障復原 | 一張 A03 桌單分送熱台與飲品台。分站存單後強制終止配送程序，重啟查回原單。八個配送者競領時只送出一次，已停發的單據也能擋住遲到請求。 | [實作](https://github.com/peca12968/pass-rail/blob/e52bdb1468117899cf0b5c91d871208ae5ef6264/rail.py) · [測試](https://github.com/peca12968/pass-rail/blob/e52bdb1468117899cf0b5c91d871208ae5ef6264/test_rail.py) · [CI](https://github.com/peca12968/pass-rail/actions/runs/45244734428) |
 | [Table Shares](https://github.com/peca12968/table-shares) | Python、JavaScript BigInt、最小費用流 | 以獨立窮舉核對 240 張合成帳單，再逐格比對瀏覽器與 Python 的分帳結果。每人應付與每道菜的明細都能對回原收據。 | [實作](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/split.mjs) · [測試](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/test_split.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45241854623) |
 | [Till Change](https://github.com/peca12968/till-change) | C#、動態規劃、滑動視窗 | 一碗 190 元的豬排丼收兩百，找兩枚五元以保留最後一枚十元。用 512 筆測試交易逐筆枚舉找零組合，核對留存枚數、現金守恆與期末餘額。 | [實作](https://github.com/peca12968/till-change/blob/210ec2967f8c1394849fd68ae183c98d075ba9c8/Change.cs) · [測試](https://github.com/peca12968/till-change/blob/210ec2967f8c1394849fd68ae183c98d075ba9c8/test_change.py) · [CI](https://github.com/peca12968/till-change/actions/runs/45239129370) |

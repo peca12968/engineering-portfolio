@@ -24,6 +24,10 @@
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
 
+### 排程演算法｜Pickup Window
+
+以 JavaScript 排定廚房各站的製作批次，根據空位、已完成數量與鍋中剩餘時間估算何時可交整單。用獨立的逐秒模擬器窮舉 729 種工時組合，逐單核對最快、最慢完成時間，再用禾日食堂 Worker 和 D1 的店員匯出檔重跑同一支指令。[區間與窮舉驗證](https://github.com/peca12968/pickup-window/blob/d4ddf360a1ba141a4a27039b8276425638127e70/estimate.test.mjs) · [CI](https://github.com/peca12968/pickup-window/actions/runs/45250062382)
+
 ### 金流對帳｜Payout Ledger
 
 以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/78f01c6eb079f1d68fe8444f94342e419a6b1327/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45248921613)
