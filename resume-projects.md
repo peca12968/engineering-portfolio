@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 後端整合｜Pickup Agenda 自取預約與行事曆訂閱
+
+將廚房快照與取餐估算交叉核對，以 SQLite 修訂紀錄保存店員確認的取餐時段。17 號餐單從暫定、確認、改期到取消都沿用同一個行事曆識別碼。分別以 Python 產生事件、以 JavaScript 經 HTTP 讀取並解析四個版本，核對時間、狀態及未變更時的 304 回應。[跨語言訂閱測試](https://github.com/peca12968/pickup-agenda/blob/dd088a710da19cfcbbc274f90283b818a716d3cf/calendar.test.mjs) · [CI](https://github.com/peca12968/pickup-agenda/actions/runs/45290984584)
+
 ### 開發工具｜Body Replay API 發布相容性檢查
 
 讀取兩版 OpenAPI 與既有 JSON 請求，解析文件內引用、列出不相容的欄位位置及可重跑的請求內容。從 Git 歷史啟動兩版 Stockroom，將七個不同請求的離線判定與 FastAPI 回應逐一比對。加入每單最多五件的演練限制後，六件與十件的兩個範例都收到 422，依合成出現次數合計影響 15／75 筆。報表另列出舊樣本未覆蓋的新端點。[跨版本服務驗證](https://github.com/peca12968/body-replay/blob/a0fc354824900b390c7f3e3f46cb97282b84a624/demo.py) · [CI](https://github.com/peca12968/body-replay/actions/runs/45288603974)
@@ -53,7 +57,7 @@
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
 - 用 React、Cloudflare Workers 與 D1 建立線上自取、桌邊掃碼及廚房接單流程。以獨立解碼器讀取 QR 桌號，再用兩個瀏覽器身分完成交餐。即使寫入訂單後遺失回應，手機重新開啟仍可找回原取餐號碼。
-- 串接 TapPay 的 LINE Pay、全支付、街口支付、悠遊付、Pi 拍錢包、全盈+PAY 與信用卡。依錢包規格取得付款憑證、傳送成交品項並查證交易。以三種錢包分別完成 200 元示範單的取消、重試與收據復原。另測試同時發起付款只建立一筆待付交易、金額相同但錢包不符時維持待確認。[手機金流測試](https://github.com/peca12968/hey-table/blob/e0596f05039ff0520bfb1207c20fee05c1e7894b/qa/payments.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45269228719)
+- 串接 TapPay 的 LINE Pay、全支付、街口支付、悠遊付、Pi 拍錢包、全盈+PAY 與信用卡。模擬 LINE Pay 與全支付已接收請款但回應中斷的情境，驗證八次並行重試只產生一次對外請款，再以原交易編號核對金額與狀態，恢復同一張收據。[金流中斷與重送測試](https://github.com/peca12968/hey-table/blob/93a419a680280410c8b07a4c376bd541fa50ebb5/qa/tappay.test.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45291445256)
 - 以廚房工時估算出餐，支援店員比較與匯入校準值。購物車依已完成訂單推薦加點，並將成交套餐與逐菜折扣寫入 D1。用全支付示範單核對折扣後付款與分帳均為 415 元，也可依取餐號碼匯出舊單試算部分退餐。
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。另串接採購單分批驗收，依供應商與 SKU 追蹤欠貨；八個連線同收最後一包，僅一筆入庫。[採購驗收交易與測試](https://github.com/peca12968/prep-sheet/blob/00e56da3bf47a32819652a69bdcc9862fa6f56e7/test_receiving.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45256730270)
