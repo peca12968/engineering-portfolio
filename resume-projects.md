@@ -17,3 +17,9 @@
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
 以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐與廚房接單流程。用獨立解碼器讀回 QR 桌號，再以兩個瀏覽器身分從送單操作到交餐；用並發測試驗證重送去重、售完阻擋及店員搶單。將店員實際下載的 JSON 交給 Python 工具，驗證畫面份數與備料需求一致。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/e68aefb12e246058622861e04c7a1a0fa4495efc/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45237237599)
+
+串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
+
+### 演算法工程｜Till Change 現場付款找零
+
+以 C# 實作有限庫存的找零演算法，依序最佳化動用的預留枚數與交付總枚數。以 Python 獨立枚舉 64 個班次、512 筆交易，逐筆比對找零結果及錢櫃餘額。[獨立枚舉驗證](https://github.com/peca12968/till-change/blob/210ec2967f8c1394849fd68ae183c98d075ba9c8/test_change.py) · [CI](https://github.com/peca12968/till-change/actions/runs/45239129370)
