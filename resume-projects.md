@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 最佳化工程｜Float Plan 現金班次備零規劃
+
+把各面額現金在連續交易中的收支建成整數規劃模型，先求最低補款金額，再求全班最少找零枚數。若可調用的零錢不足，找出最早無法連續完成的交易。四筆午餐單的合成案例需補 45 元，C# 收銀程式重播後由三筆收款成功提升至四筆。另以 128 個小班次逐一枚舉補款與找零方式，核對求解結果。[窮舉與找零回歸測試](https://github.com/peca12968/float-plan/blob/3be2edd0eb675926826fa3a2c93a319d6c87af7e/test_float_plan.py) · [CI](https://github.com/peca12968/float-plan/actions/runs/45284673594)
+
 ### 資料工程｜Ready Range 餐點等候時間分析
 
 從餐廳分站出單檔重建下單至可取餐的時間範圍，將製作中與已取消的訂單納入統計。四次快照涵蓋五張合成訂單，可將中位等候時間界定在 40 至 100 秒。以暫存 D1 測試內用與自取訂單，逐一驗證 LINE Pay、全支付等七種線上方式模擬付款後才可接單，並核對出餐報表。[付款與出餐整合測試](https://github.com/peca12968/ready-range/blob/fe8d18d32b13e2125bfe3b808c5b1ecaecbe756f/demo.mjs) · [CI](https://github.com/peca12968/ready-range/actions/runs/45283006159)

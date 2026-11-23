@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **89** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **90** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Float Plan](https://github.com/peca12968/float-plan) | Python、OR-Tools CP-SAT、整數規劃、C# 整合測試 | 已知四位客人的付款順序與面額，算出午餐班至少要補 45 元。以收銀程式重播，補入一枚五元、四枚十元後，四筆皆能找開。 | [實作](https://github.com/peca12968/float-plan/blob/3be2edd0eb675926826fa3a2c93a319d6c87af7e/float_plan.py) · [測試](https://github.com/peca12968/float-plan/blob/3be2edd0eb675926826fa3a2c93a319d6c87af7e/test_float_plan.py) · [CI](https://github.com/peca12968/float-plan/actions/runs/45284673594) |
 | [Ready Range](https://github.com/peca12968/ready-range) | Python、區間統計、Cloudflare D1、整合測試 | 從廚房快照保留尚未出餐與取消的樣本。五張午餐單中，40 秒內可取餐的有一至三張；另以七種線上示範金流與現場付款驗證接單流程。 | [實作](https://github.com/peca12968/ready-range/blob/fe8d18d32b13e2125bfe3b808c5b1ecaecbe756f/ready.py) · [測試](https://github.com/peca12968/ready-range/blob/fe8d18d32b13e2125bfe3b808c5b1ecaecbe756f/demo.mjs) · [CI](https://github.com/peca12968/ready-range/actions/runs/45283006159) |
 | [Hold Model](https://github.com/peca12968/hold-model) | Python、FastAPI、狀態模型測試、線性一致性 | 擷取兩個 API 實例爭用庫存的請求與回應，找出能解釋讀取及收據的順序。以 160 份合成紀錄比對枚舉結果，並辨識 20 件庫存卻同時保留兩筆 13 件的矛盾。 | [實作](https://github.com/peca12968/hold-model/blob/f69bb1ffb7592abf97713b4e58b578f112924ecd/history.py) · [測試](https://github.com/peca12968/hold-model/blob/f69bb1ffb7592abf97713b4e58b578f112924ecd/test_history.py) · [CI](https://github.com/peca12968/hold-model/actions/runs/45279625800) |
 | [Remit Match](https://github.com/peca12968/remit-match) | Python、二分圖最大匹配、強連通分量 | 餐廳八筆無批號匯款最多可配六筆。逐筆標示唯一候選、可互換或可能落單的情況，並用 643 組小案例的窮舉結果比對。 | [實作](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/matching.py) · [測試](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45275813561) |
