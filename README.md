@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **86** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **87** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Remit Match](https://github.com/peca12968/remit-match) | Python、二分圖最大匹配、強連通分量 | 餐廳八筆無批號匯款最多可配六筆。逐筆標示唯一候選、可互換或可能落單的情況，並用 643 組小案例的窮舉結果比對。 | [實作](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/matching.py) · [測試](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45275813561) |
 | [Table Scan Check](https://github.com/peca12968/table-scan-check) | Python、OpenCV、ZXing-C++、PDFium、Playwright | 驗收八桌的送印 PDF，逐頁比對每張桌牌的 QR 與預期網址，指出對調的桌號和漏印的桌牌。另以 32 個影像案例測試縮印與斜拍。 | [實作](https://github.com/peca12968/table-scan-check/blob/cbd3a32b2290b9f07f126f7f2c9d9a097c8ccd27/scan_sheet.py) · [測試](https://github.com/peca12968/table-scan-check/blob/cbd3a32b2290b9f07f126f7f2c9d9a097c8ccd27/test_sheet.py) · [CI](https://github.com/peca12968/table-scan-check/actions/runs/45273405947) |
 | [Receipt Returns](https://github.com/peca12968/receipt-returns) | Python、SQLite、交易一致性、金額驗算 | 全支付示範單內兩份煎餃的成交價為 85 與 72 元。依套餐折扣逐份計算退餐金額，以 44 種分批順序驗證整張單正好退盡 345 元，並測試兩個連線競爭最後一份。 | [實作](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/returns.py) · [測試](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/test_returns.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45266726797) |
 | [Combo Counter](https://github.com/peca12968/combo-counter) | JavaScript、二分圖配對、最小費用流、BigInt | A03 桌四道餐點原價 490 元。重新搭配兩套後省 75 元，逐菜實付合計 415 元。用 512 組購物車與規則枚舉核對最佳折扣與套餐數。 | [實作](https://github.com/peca12968/combo-counter/blob/25fbf7ae239c8ca8c465588b0fe8ab1756a04ff9/quote.mjs) · [測試](https://github.com/peca12968/combo-counter/blob/25fbf7ae239c8ca8c465588b0fe8ab1756a04ff9/quote.test.mjs) · [CI](https://github.com/peca12968/combo-counter/actions/runs/45262807712) |

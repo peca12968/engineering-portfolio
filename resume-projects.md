@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 演算法工程｜Remit Match 無批號匯款追查
+
+在金流合成報表中，兩筆各 60 元的匯款都只有同一個候選批號，兩筆卻不能同時認列。依撥款餘額與日期建立二分圖，從所有最多筆數配法中列出每筆可能批號與落單情形。以 643 組案例的獨立窮舉結果逐筆比對，另驗證 5,000 筆連鎖日期限制，並從上游核帳程式重新產生測試輸入。[配對與跨專案測試](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45275813561)
+
 ### 影像處理與測試工程｜Table Scan Check 桌牌掃碼驗收
 
 用 Playwright 從點餐頁輸出兩頁 A4 桌牌，以 PDFium 和獨立 QR 解碼器核對八桌的位置與目的地。保留原桌號文字、交換 A01 和 A02 的 QR 圖後，驗收能指出兩桌各自掃到哪一桌。少印第二頁時，報表會列出 A05 到 A08。另以 OpenCV 模擬縮印、斜拍與模糊，24 次必要影像檢查皆符合預期。[送印檔回歸測試](https://github.com/peca12968/table-scan-check/blob/cbd3a32b2290b9f07f126f7f2c9d9a097c8ccd27/test_sheet.py) · [CI](https://github.com/peca12968/table-scan-check/actions/runs/45273405947)
