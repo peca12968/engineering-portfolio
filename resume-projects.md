@@ -40,7 +40,9 @@
 
 ### 後端工程｜Stockroom Reservations
 
-以 FastAPI 和 SQLite 實作跨訂單的整批出貨，讓各箱收據、保留數量與庫存扣減共同提交。兩個 API 實例同時處理兩個批號的 12 次請求，爭用同一箱時，一次建立、五次取回原收據、六次衝突，庫存只扣一批。另驗證最後一箱寫入失敗時整批回滾，以及成功回應遺失後仍可依批號查回原始收據。[整批出貨與復原測試](https://github.com/peca12968/stockroom-reservations/blob/d6d5139e2b4413fea49f83d15b3928c7e97be6da/tests/test_dispatch_batches.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45287456534)
+以 FastAPI 和 SQLite 實作跨訂單的整批出貨，讓各箱收據、保留數量與庫存扣減共同提交。兩個 API 實例同時處理兩個批號的 12 次請求，爭用同一箱時，一次建立、五次取回原收據、六次衝突，庫存只扣一批。另驗證最後一箱寫入失敗時整批回滾，以及成功回應遺失後仍可依批號查回原始收據。[服務整合驗證](https://github.com/peca12968/stockroom-reservations/actions/runs/45292617973)
+
+設計唯讀的跨版本庫存對帳工具，從期初與期末快照重建每個商品的實體與可用量。以 20 件的範例區分進貨、出貨、退回、保留與到期，並找出總量吻合卻被改動或遺失的兩張箱單。安排另一個寫入者在報表讀取途中提交出貨，驗證本次報表與下一次報表各自反映一致的時間點。[快照與並行對帳測試](https://github.com/peca12968/stockroom-reservations/blob/5dbd58275137a9018b282aff5e8d832a7f7ab1d7/tests/test_reconcile.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45292617973)
 
 ### 可靠性工程｜Pass Rail 廚房分站出單
 
