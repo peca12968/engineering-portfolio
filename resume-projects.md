@@ -54,4 +54,4 @@
 
 以 C# 實作有限庫存的找零演算法，依序最佳化動用的預留枚數與交付總枚數。以 Python 獨立枚舉 64 個班次、512 筆交易，逐筆比對找零結果及錢櫃餘額。[獨立枚舉驗證](https://github.com/peca12968/till-change/blob/210ec2967f8c1394849fd68ae183c98d075ba9c8/test_change.py) · [CI](https://github.com/peca12968/till-change/actions/runs/45239129370)
 
-以 Python 精確分數與最小費用流實作多人按比例分帳。把 A03 桌單的兩道共享小菜分到整元，逐菜金額和兩人應付總額都可對回收據。以 240 張合成帳單的窮舉結果驗證最佳分配，再逐格核對供手機收據使用的 JavaScript BigInt 模組。[分帳窮舉測試](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/test_split.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45241854623)
+以 Python 精確分數與最小費用流實作多人分帳。串接套餐報價後，逐項核對優惠使用份數、逐菜折扣及折後金額，再分配尾差。A03 桌原價 385 元、折 40 元，兩人實付 222 與 123 元。以 240 張一般餐單及 256 組合成套餐報價的窮舉解核對最佳分配，再逐格比對 JavaScript BigInt 模組。[折後分帳與跨語言驗證](https://github.com/peca12968/table-shares/blob/91ff344a99838d91906d90328ac31f2533da1407/test_combo.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45263973016)
