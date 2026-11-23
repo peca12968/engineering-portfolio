@@ -70,7 +70,7 @@
 
 ### 金流對帳｜Payout Ledger
 
-用 Python 與 SQLite 核對餐單、電子支付退款、撥款和銀行入帳。兩筆同日各 70 元的匯款在演算法中都可能屬於 C 或 D 批次，取得個別水單編號後才由店員補登。連同另一帳戶的扣款，合成案例的無批號流水由 8 筆減為 5 筆。匯出前逐筆核對日期及金額，並驗證重複匯入同一決定、併行輸出同名檔案時均能保留完整結果。[跨專案覆核測試](https://github.com/peca12968/payout-ledger/blob/b6b28c18089627cd273119ee8f3559bdf16d72a2/test_bank_review.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45276670251)
+用 Python 與 SQLite 核對餐單、電子支付退款、撥款和銀行入帳。當兩筆匯款各含兩個撥款批次，依水單分配金額，逐筆核對銀行原額，保留批次到原流水及文件編號的追查路徑。在 LINE Pay、全支付、街口支付的合成案例中，兩批分別核平 450 與 205 元。另以 144 組含入帳與扣款的金額組合交叉檢查批次和帳戶小計。[合併匯款核帳測試](https://github.com/peca12968/payout-ledger/blob/a726ffb913726854b1365ab323198ef48cba69a7/test_bank_allocations.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45283704965)
 
 ### 演算法工程｜現場找零與合菜分帳
 
