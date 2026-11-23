@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import re
 import subprocess
+import time
 
 BASE = r"https://github\.com/peca12968/"
 REPO = re.compile(BASE + r"([a-z0-9-]+)\)")
@@ -11,7 +12,30 @@ RUN = re.compile(BASE + r"([a-z0-9-]+)/actions/runs/(\d+)\)")
 
 
 def api(path):
-    return json.loads(subprocess.check_output(["gh", "api", path], encoding="utf-8"))
+    for attempt in range(3):
+        result = subprocess.run(["gh", "api", path], capture_output=True, encoding="utf-8")
+        if result.returncode == 0:
+            return json.loads(result.stdout)
+        transient = re.search(r"i/o timeout|connection reset|TLS handshake timeout|HTTP 50[234]", result.stderr, re.I)
+        if not transient or attempt == 2:
+            raise RuntimeError(f"{path}: {result.stderr.strip()}")
+        time.sleep(2 ** attempt)
+
+
+def verify_highlights(text, rows):
+    sections = re.split(r"^### ", text, flags=re.M)[1:]
+    if not sections:
+        raise ValueError("Missing resume project sections")
+    for section in sections:
+        files, runs = BLOB.findall(section), RUN.findall(section)
+        if not files or not runs:
+            raise ValueError(f"Missing resume evidence: {section.splitlines()[0]}")
+        for file in files:
+            if not any(file in BLOB.findall(row) and set(runs).intersection(RUN.findall(row)) for row in rows):
+                raise ValueError(f"Resume evidence must match its verified portfolio row: {file}")
+        if any(not any(run in RUN.findall(row) and set(files).intersection(BLOB.findall(row)) for row in rows)
+               for run in runs):
+            raise ValueError("Resume CI link has no matching evidence")
 
 
 def verify(row):
@@ -50,6 +74,8 @@ def main():
     unlisted = set(REPO.findall(text)) - set(projects)
     if unlisted:
         raise ValueError(f"Project links without a verified portfolio row: {sorted(unlisted)}")
+    highlights = Path(__file__).with_name("resume-projects.md").read_text(encoding="utf-8")
+    verify_highlights(highlights, rows)
 
 
 if __name__ == "__main__":

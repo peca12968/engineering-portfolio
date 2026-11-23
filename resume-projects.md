@@ -12,4 +12,8 @@
 
 ### 前端工程｜Focus Receipt
 
-以 JavaScript 和 Playwright 建立 11 步鍵盤回歸測試，在第 8 步定位文件封存後的焦點遺失。修正後以 Chromium 與 Firefox 核對焦點能移到下一筆文件，清單清空時則移到空清單標題。[鍵盤回歸測試](https://github.com/peca12968/focus-receipt/blob/e339536fcfaba6cd909cd43234a3ebd723e23eb8/focus.test.mjs) · [CI](https://github.com/peca12968/focus-receipt/actions/runs/45068024391)
+以 JavaScript 和 Playwright 驗證 Chromium 與 Firefox 的鍵盤操作。七步流程跨越兩層 iframe 與 Shadow DOM；即使第三步落在另一個同名「確認」按鈕，測試仍能指出實際框架與元素。[跨來源焦點測試](https://github.com/peca12968/focus-receipt/blob/3bc0875c6ed74812c4ef2b3010348123dd045936/embedded.test.mjs) · [CI](https://github.com/peca12968/focus-receipt/actions/runs/45090951927)
+
+### 全端工程｜禾日食堂線上與掃碼點餐
+
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐與廚房接單流程。用獨立解碼器讀回 QR 桌號，再以兩個瀏覽器身分從送單操作到交餐；用並發測試驗證重送去重、售完阻擋及店員搶單。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/33c3d0e15326f442363d9f5f52cbab612fc44d0d/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45234975470)
