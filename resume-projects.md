@@ -16,4 +16,4 @@
 
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
-以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐與廚房接單流程。用獨立解碼器讀回 QR 桌號，再以兩個瀏覽器身分從送單操作到交餐；用並發測試驗證重送去重、售完阻擋及店員搶單。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/33c3d0e15326f442363d9f5f52cbab612fc44d0d/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45234975470)
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐與廚房接單流程。用獨立解碼器讀回 QR 桌號，再以兩個瀏覽器身分從送單操作到交餐；用並發測試驗證重送去重、售完阻擋及店員搶單。將店員實際下載的 JSON 交給 Python 工具，驗證畫面份數與備料需求一致。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/e68aefb12e246058622861e04c7a1a0fa4495efc/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45237237599)

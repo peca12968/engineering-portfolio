@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **74** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **75** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,7 +15,8 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
-| [禾日食堂 Hey Table](https://github.com/peca12968/hey-table) | React、Cloudflare Workers、D1、QR Code、Playwright | 解碼 A03 桌牌並實際送單，從另一個瀏覽器接單、製作與交餐。三次並發重送只建立一單，兩位店員同時接單只有一次成功。 | [實作](https://github.com/peca12968/hey-table/blob/33c3d0e15326f442363d9f5f52cbab612fc44d0d/server/api.mjs) · [測試](https://github.com/peca12968/hey-table/blob/33c3d0e15326f442363d9f5f52cbab612fc44d0d/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45234975470) |
+| [Prep Sheet](https://github.com/peca12968/prep-sheet) | Python、SQLite、食譜版本、批量規劃 | 彙總自取與桌邊點餐的食材需求。五碗丼飯需 920 g 白飯，扣除現有的 220 g 後須煮兩鍋。取消一單後重算為一鍋。 | [實作](https://github.com/peca12968/prep-sheet/blob/f31533e5b5fe9cef010c479771d4124d308eebac/prep.py) · [測試](https://github.com/peca12968/prep-sheet/blob/f31533e5b5fe9cef010c479771d4124d308eebac/kitchen-demo.mjs) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45236458269) |
+| [禾日食堂 Hey Table](https://github.com/peca12968/hey-table) | React、Cloudflare Workers、D1、QR Code、Playwright | 解碼 A03 桌牌並實際送單，從另一個瀏覽器接單、製作與交餐。驗證三次重送只建立一單，並將店員下載的備料單交給 Python 重算。 | [實作](https://github.com/peca12968/hey-table/blob/e68aefb12e246058622861e04c7a1a0fa4495efc/server/api.mjs) · [測試](https://github.com/peca12968/hey-table/blob/e68aefb12e246058622861e04c7a1a0fa4495efc/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45237237599) |
 | [Thaw Window](https://github.com/peca12968/thaw-window) | Python、SQLite、時序資料品質 | 15 秒冷庫資料包含 2 秒缺測及 3 秒同時刻讀值歧異，超溫時間界限為 8 至 13 秒。以 240 組短序列逐毫秒核對每窗與總計。 | [實作](https://github.com/peca12968/thaw-window/blob/8183b10d648d90f3cdc445298abb58e1a2ca560e/thaw.py) · [測試](https://github.com/peca12968/thaw-window/blob/8183b10d648d90f3cdc445298abb58e1a2ca560e/test_thaw.py) · [CI](https://github.com/peca12968/thaw-window/actions/runs/45090385958) |
 | [Coldroom Inbox](https://github.com/peca12968/coldroom-inbox) | Node.js、MQTT QoS 1、SQLite、故障恢復 | 在提交後與確認前終止程序，重送仍只留一筆觀測。另以真實 MQTT 補齊缺測的兩秒，超溫時間下界由 8 秒更新為 10 秒，已開啟的歷史查詢仍可重現。 | [實作](https://github.com/peca12968/coldroom-inbox/blob/db3fbdab20811500e7269595828aeb794b367e21/inbox.mjs) · [測試](https://github.com/peca12968/coldroom-inbox/blob/db3fbdab20811500e7269595828aeb794b367e21/coverage-demo.mjs) · [CI](https://github.com/peca12968/coldroom-inbox/actions/runs/45090567932) |
 | [Tile Satchel](https://github.com/peca12968/tile-satchel) | PMTiles、HTTP Range、ETag、Python | 從 138,231 B 圖資取四個座標，共傳回 1,873 B。核對兩個座標共用 PNG、一個缺圖，以及途中換版時保留原有 ZIP。 | [實作](https://github.com/peca12968/tile-satchel/blob/4d272a2ac74b37c777794bd418a8c9a3cb1ad9bc/satchel.py) · [測試](https://github.com/peca12968/tile-satchel/blob/4d272a2ac74b37c777794bd418a8c9a3cb1ad9bc/test_satchel.py) · [CI](https://github.com/peca12968/tile-satchel/actions/runs/45089033189) |
