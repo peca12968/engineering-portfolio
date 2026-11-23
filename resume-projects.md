@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 影像處理與測試工程｜Table Scan Check 桌牌掃碼驗收
+
+以 Playwright 從禾日食堂列印頁面擷取 8 桌 QR 圖，使用 OpenCV 模擬縮印、斜拍與模糊，再用獨立解碼器逐位元組核對掃碼網址。三種必要條件共 24 次均符合桌號；56 像素壓力條件下 8 次均無法解碼。另以交換兩張桌牌及多碼同框測試驗收規則，保存影像供重現。[掃碼與錯桌測試](https://github.com/peca12968/table-scan-check/blob/841b03da189c0ace97e82d461d1235d94aa672f4/test_scan.py) · [CI](https://github.com/peca12968/table-scan-check/actions/runs/45271793086)
+
 ### 交易系統｜Receipt Returns 部分退餐試算
 
 以 Python 和 SQLite 從成交收據還原每份餐點的套餐折扣，支援退餐預覽、分批登記與重送。用禾日食堂本機 Worker 建立全支付與 LINE Pay 示範收據，驗證單點及搭不同套餐的同一道菜可有三種實付價格。以 44 種分批順序核對 345 元餐單的每次金額，再以兩個獨立連線測試舊報價與最後一份的競爭條件。[分批與並行測試](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/test_returns.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45266726797)
