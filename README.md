@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **84** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **85** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Receipt Returns](https://github.com/peca12968/receipt-returns) | Python、SQLite、交易一致性、金額驗算 | 全支付示範單內兩份煎餃的成交價為 85 與 72 元。依套餐折扣逐份計算退餐金額，以 44 種分批順序驗證整張單正好退盡 345 元，並測試兩個連線競爭最後一份。 | [實作](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/returns.py) · [測試](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/test_returns.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45266726797) |
 | [Combo Counter](https://github.com/peca12968/combo-counter) | JavaScript、二分圖配對、最小費用流、BigInt | A03 桌四道餐點原價 490 元。重新搭配兩套後省 75 元，逐菜實付合計 415 元。用 512 組購物車與規則枚舉核對最佳折扣與套餐數。 | [實作](https://github.com/peca12968/combo-counter/blob/25fbf7ae239c8ca8c465588b0fe8ab1756a04ff9/quote.mjs) · [測試](https://github.com/peca12968/combo-counter/blob/25fbf7ae239c8ca8c465588b0fe8ab1756a04ff9/quote.test.mjs) · [CI](https://github.com/peca12968/combo-counter/actions/runs/45262807712) |
 | [Menu Pairs](https://github.com/peca12968/menu-pairs) | JavaScript、SQLite、推薦排序、時間切分驗證 | 從 11 張已完成餐單建立加點排序，保留之後 7 張合成餐單比較。搭配首選命中 5 張，熱銷榜命中 3 張，並用 256 組購買歷史重算排名。 | [實作](https://github.com/peca12968/menu-pairs/blob/388bf24e0b90538191fcf05994106bfb90a991bd/pairs.mjs) · [測試](https://github.com/peca12968/menu-pairs/blob/388bf24e0b90538191fcf05994106bfb90a991bd/pairs.test.mjs) · [CI](https://github.com/peca12968/menu-pairs/actions/runs/45261102196) |
 | [Drawer Count](https://github.com/peca12968/drawer-count) | Python、C# 跨程式驗證、現金核帳 | 午間盤點總額相同，逐面額找出少一張百元、多兩枚五十元。交班另少十元，可追到兩次盤點間。用 200 個合成班次逐枚核對 1,200 次盤點。 | [實作](https://github.com/peca12968/drawer-count/blob/74275174d91db9534aa002bf95a2d806835288d3/drawer.py) · [測試](https://github.com/peca12968/drawer-count/blob/74275174d91db9534aa002bf95a2d806835288d3/test_drawer.py) · [CI](https://github.com/peca12968/drawer-count/actions/runs/45258250132) |

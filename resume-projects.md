@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 交易系統｜Receipt Returns 部分退餐試算
+
+以 Python 和 SQLite 從成交收據還原每份餐點的套餐折扣，支援退餐預覽、分批登記與重送。用禾日食堂本機 Worker 建立全支付與 LINE Pay 示範收據，驗證單點及搭不同套餐的同一道菜可有三種實付價格。以 44 種分批順序核對 345 元餐單的每次金額，再以兩個獨立連線測試舊報價與最後一份的競爭條件。[分批與並行測試](https://github.com/peca12968/receipt-returns/blob/d6dc1490e568ced896b62f7adfb56b3ba1714cb6/test_returns.py) · [CI](https://github.com/peca12968/receipt-returns/actions/runs/45266726797)
+
 ### 後端工程｜Stockroom Reservations
 
 以 FastAPI 與 SQLite 實作庫存保留，加入 Prometheus 請求計數。用兩個 API 實例處理 842 個測試請求，核對 8 次注入故障皆回滾且記入 HTTP 500 指標，再以同一組指標重播 SLO 告警的觸發與解除。[故障注入與指標驗證](https://github.com/peca12968/stockroom-reservations/blob/a66c91ef763d83ba1c065e9ea8cae0a760862c48/monitoring_drill.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45087266022)
