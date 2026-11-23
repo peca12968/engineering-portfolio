@@ -22,7 +22,7 @@
 
 以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。串接 TapPay 的四種線上付款方式，在私人預覽提供免扣款示範。用模擬金流測試授權、請款、退款及通知順序異常，另用實際 D1 併發送出兩次付款請求，確認只建立一筆待付交易。購物車新增出餐試算，以手機測試驗證回覆亂序與服務失敗時仍可送單。店員可先比較再匯入 Batch Clock 校準工時，兩個畫面同時修改時只接受一個版本。[工時匯入、並行與購物車測試](https://github.com/peca12968/hey-table/blob/d31c710310f22cbdbee64ae8fd05fb58974fa55e/qa/batch-clock.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45254256325)
 
-串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
+串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。另串接採購單分批驗收，依供應商與 SKU 追蹤欠貨；八個連線同收最後一包，僅一筆入庫。[採購驗收交易與測試](https://github.com/peca12968/prep-sheet/blob/00e56da3bf47a32819652a69bdcc9862fa6f56e7/test_receiving.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45256730270)
 
 ### 最佳化｜Pantry Freight 廚房採購
 
@@ -36,7 +36,7 @@
 
 ### 金流對帳｜Payout Ledger
 
-以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/78f01c6eb079f1d68fe8444f94342e419a6b1327/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45248921613)
+以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。按金流交易號去重並分支付工具核算，範例中 LINE Pay 淨收 NT$240、全支付 NT$80、街口 NT$40，信用卡單純授權的測試則驗證入帳為零。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/fdc70a8f23f332b5e3f5c2beb66bf832ee252e19/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45256977855)
 
 ### 演算法工程｜現場找零與合菜分帳
 
