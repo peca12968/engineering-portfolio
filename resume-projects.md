@@ -20,7 +20,7 @@
 
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
-以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/18898d0e34cbbb7180413b27bf06c537dd7e61e3/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45245009262)
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。串接 TapPay 的四種線上付款方式，在私人預覽提供免扣款示範。用模擬金流測試授權、請款、退款及通知順序異常，另用實際 D1 併發送出兩次付款請求，確認只建立一筆待付交易。[金流整合測試](https://github.com/peca12968/hey-table/blob/d905ccfe1b8237f57e3e5092356c1929fc08587c/qa/tappay.test.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45247590698)
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
 
