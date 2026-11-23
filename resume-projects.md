@@ -8,7 +8,7 @@
 
 ### 資料工程｜Ready Range 餐點等候時間分析
 
-從餐廳分站出單檔重建下單至可取餐的時間範圍，將製作中與已取消的訂單納入統計。四次快照涵蓋五張合成訂單，可將中位等候時間界定在 40 至 100 秒。以暫存 D1 測試內用與自取訂單，逐一驗證 LINE Pay、全支付等七種線上方式模擬付款後才可接單，並核對出餐報表。[付款與出餐整合測試](https://github.com/peca12968/ready-range/blob/fe8d18d32b13e2125bfe3b808c5b1ecaecbe756f/demo.mjs) · [CI](https://github.com/peca12968/ready-range/actions/runs/45283006159)
+從廚房快照重建下單至可取餐的時間區間，並用取餐號、建立時間及用餐方式核對收據。以 D1 驗證 LINE Pay、全支付等八種付款方式的分組結果，讓缺收據、製作中及已取消的餐單都保留在統計中。在五張合成訂單的全部 32 種收據覆蓋組合下，比對整體、內用與自取報表，逐組加總皆符合原始出餐統計。[付款與出餐整合測試](https://github.com/peca12968/ready-range/blob/8858e4ae11fb2893ffe8adf3b4245a9a06a62ce3/demo.mjs) · [CI](https://github.com/peca12968/ready-range/actions/runs/45285576665)
 
 ### 測試工程｜Hold Model 庫存狀態模型測試
 
