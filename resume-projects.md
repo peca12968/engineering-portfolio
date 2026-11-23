@@ -12,7 +12,7 @@
 
 ### 最佳化工程｜Float Plan 現金班次備零規劃
 
-把各面額現金在連續交易中的收支建成整數規劃模型，先求最低補款金額，再求全班最少找零枚數。若可調用的零錢不足，找出最早無法連續完成的交易。四筆午餐單的合成案例需補 45 元，C# 收銀程式重播後由三筆收款成功提升至四筆。另以 128 個小班次逐一枚舉補款與找零方式，核對求解結果。[窮舉與找零回歸測試](https://github.com/peca12968/float-plan/blob/3be2edd0eb675926826fa3a2c93a319d6c87af7e/test_float_plan.py) · [CI](https://github.com/peca12968/float-plan/actions/runs/45284673594)
+以整數規劃計算多種午餐班次共用的最低備零金額。收款歷史相同時使用同一個找零決策，待售價或實收面額出現差異後才能分開規劃。兩種四筆訂單的合成班次最低共需準備 55 元額外零錢，以 C# 收銀程式重播兩班皆可完成。另以 96 對班次窮舉核對可完成輪數、最低補款與最差情境的找零枚數。[多情境窮舉驗證](https://github.com/peca12968/float-plan/blob/b6acd4447d829d46bd37dd580554ddd69bf15d7f/test_scenarios.py) · [CI](https://github.com/peca12968/float-plan/actions/runs/45289608036)
 
 ### 資料工程｜Ready Range 餐點等候時間分析
 
