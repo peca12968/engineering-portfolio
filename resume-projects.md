@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 後端可靠性｜Commit Gap 出貨斷線與到期重送
+
+在 SQLite 提交前及 FastAPI 送出成功回應前終止服務，以同一箱號並行重送八次。原交易尚未提交且保留已到期時，八次均收到 409。若交易已提交，八次都能取回同一張三件出貨收據，另四件未出貨庫存如期釋回。以初版儲存程式建立無期限保留單，驗證遷移後在四種中斷與重啟時序中均保留原數量。[HTTP 重播與庫存核對](https://github.com/peca12968/commit-gap/blob/fcbfa9975c2fb05ff51714032c94f5ecb6fc9398/drill.py) · [CI](https://github.com/peca12968/commit-gap/actions/runs/45286601668)
+
 ### 最佳化工程｜Float Plan 現金班次備零規劃
 
 把各面額現金在連續交易中的收支建成整數規劃模型，先求最低補款金額，再求全班最少找零枚數。若可調用的零錢不足，找出最早無法連續完成的交易。四筆午餐單的合成案例需補 45 元，C# 收銀程式重播後由三筆收款成功提升至四筆。另以 128 個小班次逐一枚舉補款與找零方式，核對求解結果。[窮舉與找零回歸測試](https://github.com/peca12968/float-plan/blob/3be2edd0eb675926826fa3a2c93a319d6c87af7e/test_float_plan.py) · [CI](https://github.com/peca12968/float-plan/actions/runs/45284673594)
