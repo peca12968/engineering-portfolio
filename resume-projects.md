@@ -40,7 +40,7 @@
 
 ### 金流對帳｜Payout Ledger
 
-以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。按金流交易號去重並分支付工具核算，範例中 LINE Pay 淨收 NT$240、全支付 NT$80、街口 NT$40，信用卡單純授權的測試則驗證入帳為零。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/fdc70a8f23f332b5e3f5c2beb66bf832ee252e19/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45256977855)
+以 Python 與 SQLite 核對禾日食堂的付款與 TapPay 交易，依商店編號與支付工具彙總。合成案例中兩個商店編號各收同一餐單 NT$120；跨午夜時列出兩筆交易，當日只計 NT$120。以另一個連線在日結中途更新付款狀態，驗證同份報表的各商戶共用一致的店內快照；任一商戶缺頁時整份報表中止。[多商戶日結整合測試](https://github.com/peca12968/payout-ledger/blob/c2997a7768b203a89b7c8a2c7e6daa3ddf694310/test_merchant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45259341711)
 
 ### 演算法工程｜現場找零與合菜分帳
 
