@@ -4,7 +4,7 @@
 
 ### 影像處理與測試工程｜Table Scan Check 桌牌掃碼驗收
 
-以 Playwright 從禾日食堂列印頁面擷取 8 桌 QR 圖，使用 OpenCV 模擬縮印、斜拍與模糊，再用獨立解碼器逐位元組核對掃碼網址。三種必要條件共 24 次均符合桌號；56 像素壓力條件下 8 次均無法解碼。另以交換兩張桌牌及多碼同框測試驗收規則，保存影像供重現。[掃碼與錯桌測試](https://github.com/peca12968/table-scan-check/blob/841b03da189c0ace97e82d461d1235d94aa672f4/test_scan.py) · [CI](https://github.com/peca12968/table-scan-check/actions/runs/45271793086)
+用 Playwright 從點餐頁輸出兩頁 A4 桌牌，以 PDFium 和獨立 QR 解碼器核對八桌的位置與目的地。保留原桌號文字、交換 A01 和 A02 的 QR 圖後，驗收能指出兩桌各自掃到哪一桌。少印第二頁時，報表會列出 A05 到 A08。另以 OpenCV 模擬縮印、斜拍與模糊，24 次必要影像檢查皆符合預期。[送印檔回歸測試](https://github.com/peca12968/table-scan-check/blob/cbd3a32b2290b9f07f126f7f2c9d9a097c8ccd27/test_sheet.py) · [CI](https://github.com/peca12968/table-scan-check/actions/runs/45273405947)
 
 ### 交易系統｜Receipt Returns 部分退餐試算
 
