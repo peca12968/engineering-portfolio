@@ -6,6 +6,10 @@
 
 以 FastAPI 與 SQLite 實作庫存保留，加入 Prometheus 請求計數。用兩個 API 實例處理 842 個測試請求，核對 8 次注入故障皆回滾且記入 HTTP 500 指標，再以同一組指標重播 SLO 告警的觸發與解除。[故障注入與指標驗證](https://github.com/peca12968/stockroom-reservations/blob/a66c91ef763d83ba1c065e9ea8cae0a760862c48/monitoring_drill.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45087266022)
 
+### 可靠性工程｜Pass Rail 廚房分站出單
+
+以 Python、HTTP 與 SQLite 串接點餐服務和兩個廚房工作站。分站存好單據後強制終止配送程序，重啟可核對原單據且收件匣只有一張。另以八個配送者競領同一張單，並驗證停發與遲到送單同時抵達的結果。[中斷與競爭測試](https://github.com/peca12968/pass-rail/blob/e52bdb1468117899cf0b5c91d871208ae5ef6264/test_rail.py) · [CI](https://github.com/peca12968/pass-rail/actions/runs/45244734428)
+
 ### 資料工程｜Coldroom Inbox 與 Thaw Window
 
 串接 MQTT QoS 1、SQLite 和 Python，建立可去重的冷庫讀值紀錄，按觀測時間估算超溫持續時間。在 15 秒合成案例中，把缺測與同時刻讀值歧異分開計算。經 MQTT 補回一筆晚到資料後，模型估算的超溫時間由 8–13 秒縮至 10–13 秒。[跨服務演練](https://github.com/peca12968/coldroom-inbox/blob/db3fbdab20811500e7269595828aeb794b367e21/coverage-demo.mjs) · [CI](https://github.com/peca12968/coldroom-inbox/actions/runs/45090567932)
@@ -16,7 +20,7 @@
 
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
-以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/704617a3b3b02dff6ec10265aba04ddb8217a9a3/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45242499026)
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/18898d0e34cbbb7180413b27bf06c537dd7e61e3/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45245009262)
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
 
