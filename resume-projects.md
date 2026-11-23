@@ -32,7 +32,7 @@
 
 ### 後端工程｜Stockroom Reservations
 
-以 FastAPI 和 SQLite 實作庫存保留與續期。保留 8 件、分箱寄出 3 件、部分取消 2 件後，續期只涵蓋剩下 3 件。兩個服務實例同時對同一舊期限送出 12 個不同續期單號，只有一筆成功。模擬寫入收據失敗時驗證期限回滾，並驗證重啟、到期後重送皆可取回原收據。[交易、升級與並行測試](https://github.com/peca12968/stockroom-reservations/blob/34165f1adceb2baceaa53997b7a79a86656e959b/tests/test_api.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45277380492)
+以 FastAPI 和 SQLite 實作跨訂單的整批出貨，讓各箱收據、保留數量與庫存扣減共同提交。兩個 API 實例同時處理兩個批號的 12 次請求，爭用同一箱時，一次建立、五次取回原收據、六次衝突，庫存只扣一批。另驗證最後一箱寫入失敗時整批回滾，以及成功回應遺失後仍可依批號查回原始收據。[整批出貨與復原測試](https://github.com/peca12968/stockroom-reservations/blob/d6d5139e2b4413fea49f83d15b3928c7e97be6da/tests/test_dispatch_batches.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45287456534)
 
 ### 可靠性工程｜Pass Rail 廚房分站出單
 
