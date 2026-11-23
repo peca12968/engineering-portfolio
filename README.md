@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **69** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **70** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 ## 依職缺挑一個作品開始
 
@@ -13,9 +13,10 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Proto Relay Probe](https://github.com/peca12968/proto-relay-probe) | Protobuf、ProtoJSON、契約演進 | 以新舊兩版 descriptor 實測三條收據轉送路徑，只有二進位路徑保留三個新版值。另重現舊服務解出 −4，但發送端往返仍讀回 7 的案例。 | [實作](https://github.com/peca12968/proto-relay-probe/blob/a757e62362a9bab547c94fad8b5609be5adb8a37/probe.py) · [測試](https://github.com/peca12968/proto-relay-probe/blob/a757e62362a9bab547c94fad8b5609be5adb8a37/test_probe.py) · [CI](https://github.com/peca12968/proto-relay-probe/actions/runs/45088418247) |
 | [Iceberg Footprint](https://github.com/peca12968/iceberg-footprint) | Apache Iceberg、PyIceberg、快照生命週期 | 以四個快照和三份 Parquet 驗證共用檔案的回收估算。最舊兩版個別移除都釋出 0 B，一起移除才有一個檔案失去引用，稽核標籤可保留它。 | [實作](https://github.com/peca12968/iceberg-footprint/blob/a4324515476369c77c3b19587ea02cae93290257/footprint.py) · [測試](https://github.com/peca12968/iceberg-footprint/blob/a4324515476369c77c3b19587ea02cae93290257/test_footprint.py) · [CI](https://github.com/peca12968/iceberg-footprint/actions/runs/45087736517) |
 | [Burn Pair](https://github.com/peca12968/burn-pair) | Prometheus、PromQL、SLO 告警 | 以 promtool 重播 10 種合成情境，核對 2% 事故在第 284 分鐘觸發、322 分鐘解除，也驗證實例重啟與遙測中斷。 | [實作](https://github.com/peca12968/burn-pair/blob/5f7840f82560aab18190b50fdb85a6ffc3aa475d/rules.yml) · [測試](https://github.com/peca12968/burn-pair/blob/5f7840f82560aab18190b50fdb85a6ffc3aa475d/verify.py) · [CI](https://github.com/peca12968/burn-pair/actions/runs/45087068960) |
-| [Manifest Intake](https://github.com/peca12968/manifest-intake) | Python、gRPC、Protobuf、SQLite 交易 | 兩台服務共同接收 6 次並行上傳，含倒序重送。最後只建立一張 128 箱、8,256 件的貨單；另驗證中途斷線和兩箱件數互換後的衝突。 | [實作](https://github.com/peca12968/manifest-intake/blob/3ba0fc554334ed236300b66423e7c6301eb8fabd/service.py) · [測試](https://github.com/peca12968/manifest-intake/blob/3ba0fc554334ed236300b66423e7c6301eb8fabd/test_stream.py) · [CI](https://github.com/peca12968/manifest-intake/actions/runs/45086446768) |
+| [Manifest Intake](https://github.com/peca12968/manifest-intake) | Python、gRPC、Protobuf、SQLite 交易 | 兩台服務並行重送 6 次，只發佈一張 128 箱收據。用歷史版寫入 3 件與 5 件兩箱，新版沿用同一資料庫，核對差異旗標、倒序重送與摘要。 | [實作](https://github.com/peca12968/manifest-intake/blob/8b2e0bad13c2626bbdb9a1c1f11e0c9efdcd36b3/service.py) · [測試](https://github.com/peca12968/manifest-intake/blob/8b2e0bad13c2626bbdb9a1c1f11e0c9efdcd36b3/upgrade_demo.py) · [CI](https://github.com/peca12968/manifest-intake/actions/runs/45088538905) |
 | [Batch Parity](https://github.com/peca12968/batch-parity) | Python、ONNX Runtime、批次推論、變形測試 | 實際執行四個 ONNX 模型。重現補齊後分類分數從 4.0 降到 0.8、但類別相同的案例，並分別驗證批次成員與順序造成的差異。 | [實作](https://github.com/peca12968/batch-parity/blob/aaa6b948af2da875946f9a96a12731e10c5f774b/check.py) · [測試](https://github.com/peca12968/batch-parity/blob/aaa6b948af2da875946f9a96a12731e10c5f774b/test_parity.py) · [CI](https://github.com/peca12968/batch-parity/actions/runs/45085948416) |
 | [Vector Sieve](https://github.com/peca12968/vector-sieve) | Python、Faiss HNSW、向量檢索、Recall@k | 同一批 2,048 個向量上，地區版查詢先取全域 32 個候選再篩選，16 題全部落空。先依版本分組則找回 80 個精確前五名，另以枚舉驗證同距離項目的評分。 | [實作](https://github.com/peca12968/vector-sieve/blob/68ba4b7d07522cf2a0c8cccd8da080ec52aedc59/sieve.py) · [測試](https://github.com/peca12968/vector-sieve/blob/68ba4b7d07522cf2a0c8cccd8da080ec52aedc59/test_sieve.py) · [CI](https://github.com/peca12968/vector-sieve/actions/runs/45085487577) |
 | [WAL Lantern](https://github.com/peca12968/wal-lantern) | Go、二進位格式、SQLite WAL、滾動校驗和 | 在 31 份日誌副本上比較最後提交的位置與 SQLite 實際讀出的資料。含 7 個有效未提交頁面的副本仍只讀到較早的交易。 | [實作](https://github.com/peca12968/wal-lantern/blob/815888d38c9cd464dc455c2cb4fc7ec410be8fde/main.go) · [測試](https://github.com/peca12968/wal-lantern/blob/815888d38c9cd464dc455c2cb4fc7ec410be8fde/replay_demo.py) · [CI](https://github.com/peca12968/wal-lantern/actions/runs/45085033689) |
