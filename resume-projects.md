@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 測試工程｜Hold Model 庫存狀態模型測試
+
+以逐件追蹤去向的獨立模型核對兩個 FastAPI 實例，在 24 組可重播的操作中驗證續期、重送、部分出貨、取消與到期。1,152 步都符合模型預期。另注入到期漏還庫存的故障，將 8 步縮為 3 步，重現可用量應為 17 件卻只有 12 件的差異；刪除任一步，該差異就消失。[縮減與重播測試](https://github.com/peca12968/hold-model/blob/bb4bd5a5d80429a46e64a1fe03bb46a8055124dc/test_check.py) · [CI](https://github.com/peca12968/hold-model/actions/runs/45278528956)
+
 ### 演算法工程｜Remit Match 無批號匯款追查
 
 在金流合成報表中，兩筆各 60 元的匯款都只有同一個候選批號，兩筆卻不能同時認列。依撥款餘額與日期建立二分圖，從所有最多筆數配法中列出每筆可能批號與落單情形。以 643 組案例的獨立窮舉結果逐筆比對，另驗證 5,000 筆連鎖日期限制，並從上游核帳程式重新產生測試輸入。[配對與跨專案測試](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45275813561)
