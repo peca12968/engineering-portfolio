@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 資料工程｜Ready Range 餐點等候時間分析
+
+從餐廳分站出單檔重建下單至可取餐的時間範圍，將製作中與已取消的訂單納入統計。四次快照涵蓋五張合成訂單，可將中位等候時間界定在 40 至 100 秒。以暫存 D1 測試內用與自取訂單，逐一驗證 LINE Pay、全支付等七種線上方式模擬付款後才可接單，並核對出餐報表。[付款與出餐整合測試](https://github.com/peca12968/ready-range/blob/fe8d18d32b13e2125bfe3b808c5b1ecaecbe756f/demo.mjs) · [CI](https://github.com/peca12968/ready-range/actions/runs/45283006159)
+
 ### 測試工程｜Hold Model 庫存狀態模型測試
 
 以獨立庫存模型核對 1,152 步操作，並擷取兩個 FastAPI 實例同時處理保留、部分取消、出貨與續期的請求。對每份紀錄搜尋符合實際起訖順序、收據內容與剩餘庫存的解釋。20 件庫存收到兩筆各 13 件的訂單時，可辨識兩筆均成功的合成反例。以三種實際競爭情境各跑五次，再以 160 份小型紀錄和枚舉全部排列的結果交叉驗證。[時序與並行驗證](https://github.com/peca12968/hold-model/blob/f69bb1ffb7592abf97713b4e58b578f112924ecd/test_history.py) · [CI](https://github.com/peca12968/hold-model/actions/runs/45279625800)
