@@ -34,6 +34,10 @@
 
 以 Python 和 SQLite 記錄實作份數和每批耗時，按完成時間切分校準與驗證資料。八個程序同時開工只會有一個取得同一工作位。將 20 批合成煎茶工時匯入排程模型，保留次日四批獨立核對命中數與超時秒數。[批次工時與留後驗證](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/test_batch_clock.py) · [CI](https://github.com/peca12968/batch-clock/actions/runs/45252370915)
 
+### 現金交班核帳｜Drawer Count
+
+以 Python 逐筆重建 C# 收銀程式的現金收據，把補零、投庫和實點依序併入交班帳。午間實點與帳面都是 NT$330，仍辨識出一張百元與兩枚五十元的面額差異；交班的新增短差則定位到一枚十元。用獨立的硬幣清單核對 200 個合成班次、1,200 次盤點。[交班與上游整合測試](https://github.com/peca12968/drawer-count/blob/74275174d91db9534aa002bf95a2d806835288d3/test_drawer.py) · [CI](https://github.com/peca12968/drawer-count/actions/runs/45258250132)
+
 ### 金流對帳｜Payout Ledger
 
 以 Python 與 SQLite 核對店內付款和 TapPay 交易。在合成日結案例中追出同一餐單兩筆 NT$120 收款，並用原始金額找出部分退款單的 NT$5 差異。以禾日食堂的資料庫遷移驗證跨日付款歸屬，並測試分頁漏取時會中止報表。按金流交易號去重並分支付工具核算，範例中 LINE Pay 淨收 NT$240、全支付 NT$80、街口 NT$40，信用卡單純授權的測試則驗證入帳為零。[日結整合測試](https://github.com/peca12968/payout-ledger/blob/fdc70a8f23f332b5e3f5c2beb66bf832ee252e19/test_restaurant_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45256977855)

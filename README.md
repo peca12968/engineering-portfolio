@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **81** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **82** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Drawer Count](https://github.com/peca12968/drawer-count) | Python、C# 跨程式驗證、現金核帳 | 午間盤點總額相同，逐面額找出少一張百元、多兩枚五十元。交班另少十元，可追到兩次盤點間。用 200 個合成班次逐枚核對 1,200 次盤點。 | [實作](https://github.com/peca12968/drawer-count/blob/74275174d91db9534aa002bf95a2d806835288d3/drawer.py) · [測試](https://github.com/peca12968/drawer-count/blob/74275174d91db9534aa002bf95a2d806835288d3/test_drawer.py) · [CI](https://github.com/peca12968/drawer-count/actions/runs/45258250132) |
 | [Pantry Freight](https://github.com/peca12968/pantry-freight) | Python、動態規劃、有限庫存、跨專案驗證 | 從六種原料缺口算最低含運總價。七包免運共 NT$165，限制剩餘量後改選六包 NT$170。以 320 組合成詢價單的窮舉解逐筆比對，再把到貨量入帳重算。 | [實作](https://github.com/peca12968/pantry-freight/blob/c8f00428928e410d3cb098fa0cfe8a8d36f67452/purchase.py) · [測試](https://github.com/peca12968/pantry-freight/blob/c8f00428928e410d3cb098fa0cfe8a8d36f67452/test_purchase.py) · [CI](https://github.com/peca12968/pantry-freight/actions/runs/45255645162) |
 | [Batch Clock](https://github.com/peca12968/batch-clock) | Python、SQLite、工時量測、依時間切分驗證 | 用 20 批合成煎茶工時校準出餐估算，另以次日 4 批驗證。落在區間內由 1 批增至 3 批，最慢那批超出上界的時間也從 2 秒增至 7 秒。 | [實作](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/batch_clock.py) · [測試](https://github.com/peca12968/batch-clock/blob/b7802ce073aca960aa5c5b81de40a1c81b9e83ba/test_batch_clock.py) · [CI](https://github.com/peca12968/batch-clock/actions/runs/45252370915) |
 | [Pickup Window](https://github.com/peca12968/pickup-window) | JavaScript、分站排程、離散事件模擬 | 依分站容量與批量試算新單。以 729 種工時組合獨立核對上下界；在禾日食堂 D1 演練中，前單出餐後，新單從等候 11–14 分鐘縮至 4–5 分鐘。 | [實作](https://github.com/peca12968/pickup-window/blob/1e86c05effd8ebd102ea92629df68dda6ab1bb6d/estimate.mjs) · [測試](https://github.com/peca12968/pickup-window/blob/1e86c05effd8ebd102ea92629df68dda6ab1bb6d/estimate.test.mjs) · [CI](https://github.com/peca12968/pickup-window/actions/runs/45250645551) |
