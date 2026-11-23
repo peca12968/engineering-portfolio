@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **71** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **72** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 ## 依職缺挑一個作品開始
 
@@ -13,6 +13,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Coldroom Inbox](https://github.com/peca12968/coldroom-inbox) | Node.js、MQTT QoS 1、SQLite、故障恢復 | 感測器讀值提交後、PUBACK 前終止程序，重啟後恢復同一個 session。6 次送達都獲確認，最後保留 3 筆觀測與 2 筆拒收紀錄。 | [實作](https://github.com/peca12968/coldroom-inbox/blob/320c6586eaeb233e127ba999e5903f95d37fa38c/consumer.mjs) · [測試](https://github.com/peca12968/coldroom-inbox/blob/320c6586eaeb233e127ba999e5903f95d37fa38c/demo.mjs) · [CI](https://github.com/peca12968/coldroom-inbox/actions/runs/45089743666) |
 | [Tile Satchel](https://github.com/peca12968/tile-satchel) | PMTiles、HTTP Range、ETag、Python | 從 138,231 B 圖資取四個座標，共傳回 1,873 B。核對兩個座標共用 PNG、一個缺圖，以及途中換版時保留原有 ZIP。 | [實作](https://github.com/peca12968/tile-satchel/blob/4d272a2ac74b37c777794bd418a8c9a3cb1ad9bc/satchel.py) · [測試](https://github.com/peca12968/tile-satchel/blob/4d272a2ac74b37c777794bd418a8c9a3cb1ad9bc/test_satchel.py) · [CI](https://github.com/peca12968/tile-satchel/actions/runs/45089033189) |
 | [Proto Relay Probe](https://github.com/peca12968/proto-relay-probe) | Protobuf、ProtoJSON、契約演進 | 以新舊兩版 descriptor 實測三條收據轉送路徑，只有二進位路徑保留三個新版值。另重現舊服務解出 −4，但發送端往返仍讀回 7 的案例。 | [實作](https://github.com/peca12968/proto-relay-probe/blob/a757e62362a9bab547c94fad8b5609be5adb8a37/probe.py) · [測試](https://github.com/peca12968/proto-relay-probe/blob/a757e62362a9bab547c94fad8b5609be5adb8a37/test_probe.py) · [CI](https://github.com/peca12968/proto-relay-probe/actions/runs/45088418247) |
 | [Iceberg Footprint](https://github.com/peca12968/iceberg-footprint) | Apache Iceberg、PyIceberg、快照生命週期 | 以四個快照和三份 Parquet 驗證共用檔案的回收估算。最舊兩版個別移除都釋出 0 B，一起移除才有一個檔案失去引用，稽核標籤可保留它。 | [實作](https://github.com/peca12968/iceberg-footprint/blob/a4324515476369c77c3b19587ea02cae93290257/footprint.py) · [測試](https://github.com/peca12968/iceberg-footprint/blob/a4324515476369c77c3b19587ea02cae93290257/test_footprint.py) · [CI](https://github.com/peca12968/iceberg-footprint/actions/runs/45087736517) |
