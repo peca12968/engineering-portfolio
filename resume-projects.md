@@ -58,7 +58,7 @@
 
 ### 金流對帳｜Payout Ledger
 
-以 Python 與 SQLite 核對禾日食堂的付款與 TapPay 交易，依商店及支付工具彙總。用同一份唯讀快照追出跨午夜重複收款，並將六種錢包的付款來源與退款組成分開核算。合成日結中，Pi 拍錢包交易 300 元，退款 60 元，分別核對退回點數 10 元和實付金額 50 元。缺少明細時列出待查金額與交易號；若分頁中同筆交易的組成改變，整份明細報表中止。[跨商店錢包與退款測試](https://github.com/peca12968/payout-ledger/blob/3e8fc4c0999cb8b09d7c6388655b1c964c5b5042/test_wallet_funding.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45270464094)
+以 Python 和 SQLite 核對餐單、六種電子錢包的付款與退款，再以撥款通知和銀行流水逐批查證入帳。合成案例中，LINE Pay 與全支付扣除退款及費用後應撥 450 元，跨日實收 440 元。街口支付另一批多入 10 元，帳戶總額相符時仍能定位兩筆差異。另測試銀行沖回、跨帳戶批號重複與缺少批號的入帳。[銀行入帳核對測試](https://github.com/peca12968/payout-ledger/blob/a95730bda99d7498e4e93eb42bddf8d506e9737d/test_bank_close.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45274927889)
 
 ### 演算法工程｜現場找零與合菜分帳
 
