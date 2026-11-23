@@ -20,7 +20,7 @@
 
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
-以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。串接 TapPay 的四種線上付款方式，在私人預覽提供免扣款示範。用模擬金流測試授權、請款、退款及通知順序異常，另用實際 D1 併發送出兩次付款請求，確認只建立一筆待付交易。購物車新增出餐試算，以手機測試驗證回覆亂序與服務失敗時仍可送單。[購物車與廚房整合測試](https://github.com/peca12968/hey-table/blob/4123c57887686c7007efad3721c6526521cf61be/qa/cart-quote.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45251123435)
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。串接 TapPay 的四種線上付款方式，在私人預覽提供免扣款示範。用模擬金流測試授權、請款、退款及通知順序異常，另用實際 D1 併發送出兩次付款請求，確認只建立一筆待付交易。購物車新增出餐試算，以手機測試驗證回覆亂序與服務失敗時仍可送單。店員可先比較再匯入 Batch Clock 校準工時，兩個畫面同時修改時只接受一個版本。[工時匯入、並行與購物車測試](https://github.com/peca12968/hey-table/blob/d31c710310f22cbdbee64ae8fd05fb58974fa55e/qa/batch-clock.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45254256325)
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
 
