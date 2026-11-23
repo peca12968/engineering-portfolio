@@ -16,7 +16,7 @@
 
 ### 全端工程｜禾日食堂線上與掃碼點餐
 
-以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/4c1eaeeaf42734bcce787784feddc874fb3bbcf3/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45240303626)
+以 React、Cloudflare Workers 與 D1 建立線上自取、桌邊點餐及廚房接單流程。用獨立解碼器讀取 QR 桌號，再以兩個瀏覽器身分完成點餐與交餐。模擬訂單寫入後回應遺失，關閉分頁再開啟，手機能找回同一取餐號碼，廚房僅收到一張訂單。客人可直接在收據編輯逐菜分攤，測試核對重新整理與切換收據後的個別草稿。[點餐端對端測試](https://github.com/peca12968/hey-table/blob/704617a3b3b02dff6ec10265aba04ddb8217a9a3/qa/ordering.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45242499026)
 
 串接廚房匯出與 SQLite 庫存帳，將入庫、製作與訂單領料記為可查驗的收據。八個獨立連線競領最後一份煎茶，庫存只扣一次。煮飯缺水時整筆回滾，補水後可沿用原單號入帳。[領料交易與測試](https://github.com/peca12968/prep-sheet/blob/dcf6360a8530dadc6f11657ad0b69c605a319581/test_ledger.py) · [CI](https://github.com/peca12968/prep-sheet/actions/runs/45238425610)
 
@@ -24,4 +24,4 @@
 
 以 C# 實作有限庫存的找零演算法，依序最佳化動用的預留枚數與交付總枚數。以 Python 獨立枚舉 64 個班次、512 筆交易，逐筆比對找零結果及錢櫃餘額。[獨立枚舉驗證](https://github.com/peca12968/till-change/blob/210ec2967f8c1394849fd68ae183c98d075ba9c8/test_change.py) · [CI](https://github.com/peca12968/till-change/actions/runs/45239129370)
 
-以 Python 精確分數與最小費用流實作多人按比例分帳。把 A03 桌單的兩道共享小菜分到整元，逐菜金額和兩人應付總額都可對回收據。用 240 張合成帳單的窮舉結果驗證最佳分配。[分帳窮舉測試](https://github.com/peca12968/table-shares/blob/dbd0ae99603c9467ba339196563f263c88209964/test_split.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45241016883)
+以 Python 精確分數與最小費用流實作多人按比例分帳。把 A03 桌單的兩道共享小菜分到整元，逐菜金額和兩人應付總額都可對回收據。以 240 張合成帳單的窮舉結果驗證最佳分配，再逐格核對供手機收據使用的 JavaScript BigInt 模組。[分帳窮舉測試](https://github.com/peca12968/table-shares/blob/f96519878f9ac6ad79f7b3eae3602fa0c7a6afc0/test_split.py) · [CI](https://github.com/peca12968/table-shares/actions/runs/45241854623)
