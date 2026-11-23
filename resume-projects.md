@@ -16,7 +16,7 @@
 
 ### 後端工程｜Stockroom Reservations
 
-以 FastAPI 與 SQLite 實作庫存保留，加入 Prometheus 請求計數。用兩個 API 實例處理 842 個測試請求，核對 8 次注入故障皆回滾且記入 HTTP 500 指標，再以同一組指標重播 SLO 告警的觸發與解除。[故障注入與指標驗證](https://github.com/peca12968/stockroom-reservations/blob/a66c91ef763d83ba1c065e9ea8cae0a760862c48/monitoring_drill.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45087266022)
+以 FastAPI 和 SQLite 實作庫存保留與續期。保留 8 件、分箱寄出 3 件、部分取消 2 件後，續期只涵蓋剩下 3 件。兩個服務實例同時對同一舊期限送出 12 個不同續期單號，只有一筆成功。模擬寫入收據失敗時驗證期限回滾，並驗證重啟、到期後重送皆可取回原收據。[交易、升級與並行測試](https://github.com/peca12968/stockroom-reservations/blob/34165f1adceb2baceaa53997b7a79a86656e959b/tests/test_api.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45277380492)
 
 ### 可靠性工程｜Pass Rail 廚房分站出單
 
