@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 開發工具｜Body Replay API 發布相容性檢查
+
+讀取兩版 OpenAPI 與既有 JSON 請求，解析文件內引用、列出不相容的欄位位置及可重跑的請求內容。從 Git 歷史啟動兩版 Stockroom，將七個不同請求的離線判定與 FastAPI 回應逐一比對。加入每單最多五件的演練限制後，六件與十件的兩個範例都收到 422，依合成出現次數合計影響 15／75 筆。報表另列出舊樣本未覆蓋的新端點。[跨版本服務驗證](https://github.com/peca12968/body-replay/blob/a0fc354824900b390c7f3e3f46cb97282b84a624/demo.py) · [CI](https://github.com/peca12968/body-replay/actions/runs/45288603974)
+
 ### 後端可靠性｜Commit Gap 出貨斷線與到期重送
 
 在 SQLite 提交前及 FastAPI 送出成功回應前終止服務，以同一箱號並行重送八次。原交易尚未提交且保留已到期時，八次均收到 409。若交易已提交，八次都能取回同一張三件出貨收據，另四件未出貨庫存如期釋回。以初版儲存程式建立無期限保留單，驗證遷移後在四種中斷與重啟時序中均保留原數量。[HTTP 重播與庫存核對](https://github.com/peca12968/commit-gap/blob/fcbfa9975c2fb05ff51714032c94f5ecb6fc9398/drill.py) · [CI](https://github.com/peca12968/commit-gap/actions/runs/45286601668)
