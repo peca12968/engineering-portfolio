@@ -32,4 +32,4 @@
 
 ### 媒體處理與檔案交付
 
-以 C# 按音訊幀剪輯 16/24 位元 PCM，加入可選的接點淡出與淡入。用 Python 逐取樣核對單／雙聲道輸出，並在 60,001 幀範例驗證六句 WebVTT 字幕仍對應原剪輯時間軸。[實作與重跑](https://github.com/peca12968/take-splice/blob/49e47ad14c99c6b1d20093915f89966bc4155b33/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45329885516)
+以 C# 剪輯 16/24 位元 PCM，透過 Python 將 60,001 幀的 WAV 與六句對時後的 WebVTT 字幕打包。使用 SHA-256 和媒體時間軸驗收交付檔，以端對端測試覆蓋位元組重現、字幕被替換及並行發布。[實作與重跑](https://github.com/peca12968/take-splice/blob/af4c2630eb3f1d07f49d866aa926dcd8865c2ece/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45332993223)
