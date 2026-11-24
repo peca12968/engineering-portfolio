@@ -6,6 +6,7 @@
 
 ## 依職缺挑一個作品開始
 
+- **AI 品質評測**　固定題庫和評讀條件，逐題檢查改版是否造成退步。用合成資料重現「總通過數增加，單題卻退步」的發布閘門。[離線評測實作與重跑](examples/assistant-eval/README.md)
 - **原生圖形與效能**　用 C++20 重跑 Aevrynd 的網格射線測試，觀察共用網格的 BVH 如何建立、重用及清除後重建。[原生 BVH 實測與重跑](examples/aevrynd-bvh/README.md)
 - **後端工程**　以批號查各品項的期限、已出貨量、保留量及可用庫存。用兩個 FastAPI 實例競爭 SQLite 寫入鎖，核對整批取消前後的數量及時間。[Stockroom Reservations](https://github.com/peca12968/hey-table/blob/70f83c0e8c1253d7f0ee5481524d9fc04ee981ca/modules/stockroom-reservations/README.md)
 - **前端工程**　用兩個瀏覽器分頁重現交班衝突，檢查合併後的鍵盤焦點和儲存結果。[交班紀錄與衝突合併](https://github.com/peca12968/handoff-desk)

@@ -1,0 +1,172 @@
+{
+  "format": "assistant-regression-demo.v1",
+  "assistant_sha": "71ae0665ed03fa8f740c660c4cd7dae4c568c287",
+  "suite_sha256": "c9701933972d50740c9d5d1aa8dbb220186d8cecf6b3205932b5144b5d770edf",
+  "labels": {
+    "citation": "來源",
+    "count": "數量",
+    "scope": "範圍",
+    "wait": "追問"
+  },
+  "scenarios": [
+    {
+      "scenario": "improved",
+      "verdict": "pass",
+      "before_pass": 2,
+      "after_pass": 4,
+      "paired": 4,
+      "cases": [
+        {
+          "id": "citation",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "count",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "scope",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "wait",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        }
+      ],
+      "reasons": []
+    },
+    {
+      "scenario": "regression",
+      "verdict": "blocked",
+      "before_pass": 2,
+      "after_pass": 3,
+      "paired": 4,
+      "cases": [
+        {
+          "id": "citation",
+          "before": "pass",
+          "after": "fail",
+          "lost_criteria": [
+            2
+          ]
+        },
+        {
+          "id": "count",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "scope",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "wait",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        }
+      ],
+      "reasons": [
+        {
+          "code": "criterion_regressed",
+          "ids": [
+            "citation"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "pending",
+      "verdict": "blocked",
+      "before_pass": 2,
+      "after_pass": 3,
+      "paired": 3,
+      "cases": [
+        {
+          "id": "citation",
+          "before": "pass",
+          "after": "pending",
+          "lost_criteria": []
+        },
+        {
+          "id": "count",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "scope",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "wait",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        }
+      ],
+      "reasons": [
+        {
+          "code": "pending_review",
+          "ids": [
+            "citation"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "reviewer",
+      "verdict": "blocked",
+      "before_pass": 2,
+      "after_pass": 4,
+      "paired": 4,
+      "cases": [
+        {
+          "id": "citation",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "count",
+          "before": "pass",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "scope",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        },
+        {
+          "id": "wait",
+          "before": "fail",
+          "after": "pass",
+          "lost_criteria": []
+        }
+      ],
+      "reasons": [
+        {
+          "code": "reviewer_changed",
+          "ids": [
+            "citation"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+name: Verify assistant evaluation regression examples
+on:
+  push:
+    paths:
+      - examples/assistant-eval/**
+      - .github/workflows/assistant-eval.yml
+  pull_request:
+    paths:
+      - examples/assistant-eval/**
+      - .github/workflows/assistant-eval.yml
+permissions:
+  contents: read
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - id: reference
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+          from pathlib import Path
+          sha = json.loads(Path("examples/assistant-eval/sample.json").read_text(encoding="utf-8"))["assistant_sha"]
+          if not re.fullmatch(r"[0-9a-f]{40}", sha):
+              raise ValueError("Expected a fixed assistant revision")
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              print(f"sha={sha}", file=output)
+          PY
+      - uses: actions/checkout@v7
+        with:
+          repository: peca12968/personal-ai-assistant
+          ref: ${{ steps.reference.outputs.sha }}
+          path: assistant-reference
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /assistant/
+            /scripts/review_understanding.py
+            /scripts/evaluate_understanding.py
+            /scripts/evaluation_reports.py
+            /scripts/evaluation_attempts.py
+      - run: python -B examples/assistant-eval/make_demo.py --assistant-root assistant-reference --check
+      - run: python -B -m unittest discover -s examples/assistant-eval -v
+        env:
+          ASSISTANT_EVAL_REFERENCE: assistant-reference
