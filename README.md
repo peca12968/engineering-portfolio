@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **94** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **95** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Plate Cost](https://github.com/peca12968/plate-cost) | Python、SQLite、配方相依圖、精確分數運算 | 從 345 元套餐收據還原每道菜的折後金額，核對八項原料與 96.87 元標準食材成本。餐點製作後退一份煎餃，餘額減少 85 元，原先用掉的食材仍計入成本。 | [實作](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/plate_cost.py) · [測試](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/demo.py) · [CI](https://github.com/peca12968/plate-cost/actions/runs/45295810794) |
 | [Wallet Observer](https://github.com/peca12968/wallet-observer) | Python、SQLite 快照、Node.js、區間推算 | 從 LINE Pay 與全支付六張示範餐單的八次嘗試，按首次付款時間計算五分鐘內記為已付款的張數。補入第四分鐘的觀察後，LINE Pay 的範圍從 1～2 張縮到 2 張。 | [實作](https://github.com/peca12968/wallet-observer/blob/b44ae4e6c5fb9000d12562e99ceafcea0c82470a/observer.py) · [測試](https://github.com/peca12968/wallet-observer/blob/b44ae4e6c5fb9000d12562e99ceafcea0c82470a/demo.mjs) · [CI](https://github.com/peca12968/wallet-observer/actions/runs/45293808438) |
 | [Pickup Agenda](https://github.com/peca12968/pickup-agenda) | Python、SQLite、iCalendar、HTTP 條件式請求 | 將廚房的取餐估算匯成暫定事件。17 號餐單從確認、改期到取消都用同一個訂閱網址，八個寫入者同時改期時只採用一個版本。 | [實作](https://github.com/peca12968/pickup-agenda/blob/dd088a710da19cfcbbc274f90283b818a716d3cf/agenda.py) · [測試](https://github.com/peca12968/pickup-agenda/blob/dd088a710da19cfcbbc274f90283b818a716d3cf/calendar.test.mjs) · [CI](https://github.com/peca12968/pickup-agenda/actions/runs/45290984584) |
 | [Body Replay](https://github.com/peca12968/body-replay) | OpenAPI 3.1、JSON Schema、Python、FastAPI | 重播七個舊請求，依合成出現次數統計發布影響。保留上限改成五件後，兩個反例涵蓋 75 筆中的 15 筆，實際 API 同樣回傳 422。 | [實作](https://github.com/peca12968/body-replay/blob/a0fc354824900b390c7f3e3f46cb97282b84a624/replay.py) · [測試](https://github.com/peca12968/body-replay/blob/a0fc354824900b390c7f3e3f46cb97282b84a624/demo.py) · [CI](https://github.com/peca12968/body-replay/actions/runs/45288603974) |

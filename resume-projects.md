@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 資料工程｜Plate Cost 套餐與逐菜食材成本
+
+串接點餐收據、SQLite 退餐帳與版本化食譜，依各批半成品的產量拆算原料。用分數保留昆布、醬汁等用量，將逐菜分攤的尾差對回整單。345 元的套餐範例共耗用八項原料，標準食材成本為 96.87 元。以另一套備料程式核對每項耗用量，並驗證退餐、撤銷與供應商改價後的結果。[跨專案驗證](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/demo.py) · [CI](https://github.com/peca12968/plate-cost/actions/runs/45295810794)
+
 ### 資料工程｜Wallet Observer 付款確認時限分析
 
 用 SQLite 唯讀交易擷取禾日食堂付款狀態，以 Python 將重試合併回原餐單，依首次付款嘗試建立時間分班統計。透過點餐 API 重播六張餐單及八次付款嘗試。三張 LINE Pay 餐單在五分鐘內付款的張數，加入額外快照後從 1～2 張縮到 2 張。全支付案例另驗證逾時後重試及觀察時間不足的區別。[付款 API 整合驗證](https://github.com/peca12968/wallet-observer/blob/b44ae4e6c5fb9000d12562e99ceafcea0c82470a/demo.mjs) · [CI](https://github.com/peca12968/wallet-observer/actions/runs/45293808438)
