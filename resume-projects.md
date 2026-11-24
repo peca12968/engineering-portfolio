@@ -33,3 +33,7 @@
 ### 媒體處理與檔案交付
 
 以 C# 剪輯 16/24 位元 PCM，透過 Python 將 60,001 幀的 WAV 與六句對時後的 WebVTT 字幕打包。使用 SHA-256 和媒體時間軸驗收交付檔，以端對端測試覆蓋位元組重現、字幕被替換及並行發布。[實作與重跑](https://github.com/peca12968/take-splice/blob/af4c2630eb3f1d07f49d866aa926dcd8865c2ece/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45332993223)
+
+### 離線文件轉 HTML
+
+以 Python、PDFium 和 OpenCV 將同一份合成申請表轉成保留版面的 PNG 頁面與結構化 HTML。用 Playwright 驗證 320 × 427 像素影像、透明文字層可搜尋，以及 `Name` 與 `Example` 仍位於同一表格列。[實作與重跑](https://github.com/peca12968/document-to-html/blob/4ba5e1969ae21654973567625b1da906070f3442/README.md) · [CI](https://github.com/peca12968/document-to-html/actions/runs/45342510865)

@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **8** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **9** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -23,6 +23,7 @@
 | [知識檢索與工單派送](https://github.com/peca12968/handbook-search) | SQLite FTS5、BM25、Faiss、TF-IDF、ONNX Runtime、Python | 核對索引引用是否移位或失效。同庫以未參與訓練的工單逐筆比較現行與候選模型，以新增誤派和各隊列的人工覆核量做上線檢查。 | [實作](https://github.com/peca12968/handbook-search/blob/d46fc7f88ab7b9fa0f81d195c9682a7b6680c890/README.md) · [測試](https://github.com/peca12968/handbook-search/blob/d46fc7f88ab7b9fa0f81d195c9682a7b6680c890/modules/ticket-triage/test_release_gate.py) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45334063984) |
 | [服務觀測與執行可靠性](https://github.com/peca12968/slo-window) | React、TypeScript、.NET、OpenTelemetry、JFR、Go、PostgreSQL | 由輪替日誌重算可用率，用 BigInt 找出連續超額的 UTC 區段，依超額量排序並標記缺資料或零請求造成的分界。 | [實作](https://github.com/peca12968/slo-window/blob/4a35633e1beeb173e49e9ca7301b7327bb390150/README.md) · [測試](https://github.com/peca12968/slo-window/blob/4a35633e1beeb173e49e9ca7301b7327bb390150/browser-tests/dashboard.spec.ts) · [CI](https://github.com/peca12968/slo-window/actions/runs/45338519189) |
 | [工程發布與測試工具](https://github.com/peca12968/ci-impact-planner) | Git、Node.js、Python、JUnit XML、OpenAPI、Playwright、ICU、Go | 從 PR 或本機工作目錄追蹤測試影響。保留搬移的舊、新路徑，納入未追蹤檔案，再依專案相依分配平行測試。 | [實作](https://github.com/peca12968/ci-impact-planner/blob/19b76b8df29b66544f8fe73058b23e233d5663fb/README.md) · [測試](https://github.com/peca12968/ci-impact-planner/blob/19b76b8df29b66544f8fe73058b23e233d5663fb/test/git-input.test.js) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45328829023) |
+| [離線文件轉 HTML](https://github.com/peca12968/document-to-html) | Python、PDFium、Pillow、OpenCV、HTML、Playwright | 從同一份合成 PDF 產出頁面影像與結構化範本。自動擷取展示資料，再用真實瀏覽器核對圖片解碼、文字搜尋及表格儲存格。 | [實作](https://github.com/peca12968/document-to-html/blob/4ba5e1969ae21654973567625b1da906070f3442/README.md) · [測試](https://github.com/peca12968/document-to-html/blob/4ba5e1969ae21654973567625b1da906070f3442/tests/test_export_demo.py) · [CI](https://github.com/peca12968/document-to-html/actions/runs/45342510865) |
 
 ## 面試展示路線
 
