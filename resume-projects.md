@@ -12,7 +12,7 @@
 
 ### 工程發布與測試工具
 
-以 Node.js 與 Git 規劃 PR、分支推送及提交前測試。用真實的分岔提交重現強制推送，辨識被移除的舊契約並納入下游 API，讓範例從 3 個增加到 5 個受影響專案。缺少舊提交時改走全量測試，並在 Linux 與 Windows 驗證行為。[實作與重跑](https://github.com/peca12968/ci-impact-planner/blob/79926156a79968704aa19832aae9caeca61ad1ea/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45345456441)
+以 Node.js 與 Git 規劃受影響的測試與所需的上游建置，為只需建置的專案列出使用其產物的下游。用 64 張相依圖及 1,024 組變更情境核對範圍與順序，並以實際分支推送驗證固定讀取提交內的相依清單。[實作與重跑](https://github.com/peca12968/ci-impact-planner/blob/30059a3b31d99df205e75a7da623a7207a77fa8f/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45365392953)
 
 ### 服務觀測與執行可靠性
 
