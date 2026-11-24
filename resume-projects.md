@@ -24,7 +24,7 @@
 
 ### 知識檢索與工單派送
 
-以 SQLite FTS5 檢索中英文手冊並核對原文位置。為 TF-IDF 工單模型加入上線關卡，在 11 件獨立評估工單逐筆核對新增誤派、各隊列人工覆核與精確率，並以 SHA-256 保存模型和評估資料的版本依據。[實作與重跑](https://github.com/peca12968/handbook-search/blob/d46fc7f88ab7b9fa0f81d195c9682a7b6680c890/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45334063984)
+以 SQLite FTS5 檢索中英文手冊，依 BM25 原排名跳過內容失效或位置重複的段落，逐筆保留可引用的現行行號及掃描結果。另為 TF-IDF 工單模型加入上線關卡，核對新增誤派、人工覆核量和精確率。[實作與重跑](https://github.com/peca12968/handbook-search/blob/24f59867bd04df3241ea943ca13228c49f6dbc77/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45353888587)
 
 ### 轉乘規劃與離線地圖
 
