@@ -20,7 +20,7 @@
 
 ### 資料回溯與品質查核
 
-以 DuckDB 雙時間查詢追溯補登、更正與撤回。固定訂單範圍比較兩個截止點，辨識單價不變的來源更新，並以精確整數保留互相抵銷的增減額。另在 6,144 筆訂單的 Parquet 中縮小到一個分組，核對全部 1,024 筆命中。[實作與重跑](https://github.com/peca12968/price-as-of/blob/0a1e6259aac617bc5e62e73a86ad8d81680858c3/README.md) · [CI](https://github.com/peca12968/price-as-of/actions/runs/45337526361)
+以 DuckDB 雙時間查詢追溯價格補登、更正與撤回，並將固定訂單範圍的比較明細匯出為 Parquet。逐筆讀回核對兩時點的來源、異動分類與 DECIMAL 差額，分辨 NULL 和零，並以雙程序測試保護既有檔案。[實作與重跑](https://github.com/peca12968/price-as-of/blob/7f74ff72531426dda6b170c822ee154302ef8305/README.md) · [CI](https://github.com/peca12968/price-as-of/actions/runs/45349531612)
 
 ### 知識檢索與工單派送
 
