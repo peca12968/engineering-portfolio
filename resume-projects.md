@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 資料工程｜Wallet Observer 付款確認時限分析
+
+用 SQLite 唯讀交易擷取禾日食堂付款狀態，以 Python 將重試合併回原餐單，依首次付款嘗試建立時間分班統計。透過點餐 API 重播六張餐單及八次付款嘗試。三張 LINE Pay 餐單在五分鐘內付款的張數，加入額外快照後從 1～2 張縮到 2 張。全支付案例另驗證逾時後重試及觀察時間不足的區別。[付款 API 整合驗證](https://github.com/peca12968/wallet-observer/blob/b44ae4e6c5fb9000d12562e99ceafcea0c82470a/demo.mjs) · [CI](https://github.com/peca12968/wallet-observer/actions/runs/45293808438)
+
 ### 後端整合｜Pickup Agenda 自取預約與行事曆訂閱
 
 將廚房快照與取餐估算交叉核對，以 SQLite 修訂紀錄保存店員確認的取餐時段。17 號餐單從暫定、確認、改期到取消都沿用同一個行事曆識別碼。分別以 Python 產生事件、以 JavaScript 經 HTTP 讀取並解析四個版本，核對時間、狀態及未變更時的 304 回應。[跨語言訂閱測試](https://github.com/peca12968/pickup-agenda/blob/dd088a710da19cfcbbc274f90283b818a716d3cf/calendar.test.mjs) · [CI](https://github.com/peca12968/pickup-agenda/actions/runs/45290984584)
