@@ -100,7 +100,7 @@
 
 ### 金流對帳｜Payout Ledger
 
-用 Python 與 SQLite 核對餐單、電子支付退款、撥款和銀行入帳。當兩筆匯款各含兩個撥款批次，依水單分配金額，逐筆核對銀行原額，保留批次到原流水及文件編號的追查路徑。在 LINE Pay、全支付、街口支付的合成案例中，兩批分別核平 450 與 205 元。另以 144 組含入帳與扣款的金額組合交叉檢查批次和帳戶小計。[合併匯款核帳測試](https://github.com/peca12968/payout-ledger/blob/a726ffb913726854b1365ab323198ef48cba69a7/test_bank_allocations.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45283704965)
+用 Python 與 SQLite 串接餐單與 TapPay 銀行對帳資料。依銀行處理時間計算台灣日結，兩筆跨日 LINE Pay 退款合計 50 元，全支付當日淨額 80 元，合計 30 元。分頁測試覆蓋午夜、交易識別碼衝突、頁面重複與退款失敗。另支援依水單拆分合併匯款，保留撥款批次與原銀行流水的追查路徑。[跨日對帳測試](https://github.com/peca12968/payout-ledger/blob/58daffdfe121fa714ece1e838ea7150fff67cf8f/test_bank_activity.py) · [CI](https://github.com/peca12968/payout-ledger/actions/runs/45298213608)
 
 ### 演算法工程｜現場找零與合菜分帳
 
