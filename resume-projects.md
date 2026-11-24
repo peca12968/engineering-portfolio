@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 資料工程｜Batch Waste 備料成本與盤點短差
+
+重播 Prep Sheet 的入庫、製作及領用收據，把原料成本依先進先出分攤到半成品與餐單。兩鍋飯的 40 元成本逐筆對回 26.80 元領用、1.65 元報廢、0.55 元待追查短差及 11 元期末成本。以 300 組逐單位計算核對精確分數與批次成本，並驗證缺漏收據、成本或單位錯誤時停止計算。[備料帳整合測試](https://github.com/peca12968/batch-waste/blob/17e92877ae9b86ca5d6b736da37421ceee6b0706/demo.py) · [CI](https://github.com/peca12968/batch-waste/actions/runs/45300475027)
+
 ### 演算法工程｜Dispatch Window 到期前出貨安排
 
 從 Stockroom 擷取四張訂單的同時點快照，以子集合動態規劃安排包裝台。先包最早到期的單至多出貨 6 件，最佳安排可出貨 9 件。以 300 組小案例的獨立窮舉核對解法，再由實際批次 API 驗證到期時刻、三批出貨與舊版保留。[跨專案重播](https://github.com/peca12968/dispatch-window/blob/7cbcb0e4e0646d3855548657739c7a16a7c69d03/demo.py) · [CI](https://github.com/peca12968/dispatch-window/actions/runs/45299659845)

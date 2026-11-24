@@ -1,6 +1,6 @@
 # peca12968｜軟體工程作品集
 
-目前收錄 **97** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
+目前收錄 **98** 個可從原始碼重跑的工程作品。每個專案附繁中說明，下面的完整清單連到通過 CI 的實作與測試版本。
 
 履歷專案欄可從後端、資料與前端各選一則。[繁中履歷專案摘錄](resume-projects.md)
 
@@ -15,6 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
+| [Batch Waste](https://github.com/peca12968/batch-waste) | Python、SQLite 收據整合、FIFO、精確分數 | 兩鍋白飯共 800 g，領料後帳面剩 240 g，實秤 200 g。用製作收據及進貨成本核對 30 g 已登記報廢、10 g 未解釋短差及 11 元期末食材成本。 | [實作](https://github.com/peca12968/batch-waste/blob/17e92877ae9b86ca5d6b736da37421ceee6b0706/close.py) · [測試](https://github.com/peca12968/batch-waste/blob/17e92877ae9b86ca5d6b736da37421ceee6b0706/demo.py) · [CI](https://github.com/peca12968/batch-waste/actions/runs/45300475027) |
 | [Dispatch Window](https://github.com/peca12968/dispatch-window) | Python、動態規劃、FastAPI 整合測試 | 一次擷取四張庫存保留單，再依備妥、工時和到期時間排一座包裝台。最佳排法出貨 9 件，並拒絕早於快照時點的開工時間。 | [實作](https://github.com/peca12968/dispatch-window/blob/7cbcb0e4e0646d3855548657739c7a16a7c69d03/dispatch.py) · [測試](https://github.com/peca12968/dispatch-window/blob/7cbcb0e4e0646d3855548657739c7a16a7c69d03/demo.py) · [CI](https://github.com/peca12968/dispatch-window/actions/runs/45299659845) |
 | [Return Docket](https://github.com/peca12968/return-docket) | C#、.NET、ECDSA、OpenSSL | 封裝 Stockroom 重啟後取回的兩批退貨收據，離線以公鑰核對四筆箱別紀錄與六件商品。驗證件數改動、錯班次與並行發布，並以 OpenSSL 互驗簽章。 | [實作](https://github.com/peca12968/return-docket/blob/f9e052c111c83a4e68b22b374bb6ab7a469eb650/Program.cs) · [測試](https://github.com/peca12968/return-docket/blob/f9e052c111c83a4e68b22b374bb6ab7a469eb650/demo.py) · [CI](https://github.com/peca12968/return-docket/actions/runs/45297355064) |
 | [Plate Cost](https://github.com/peca12968/plate-cost) | Python、SQLite、配方相依圖、精確分數運算 | 從 345 元套餐收據還原每道菜的折後金額，核對八項原料與 96.87 元標準食材成本。餐點製作後退一份煎餃，餘額減少 85 元，原先用掉的食材仍計入成本。 | [實作](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/plate_cost.py) · [測試](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/demo.py) · [CI](https://github.com/peca12968/plate-cost/actions/runs/45295810794) |
