@@ -12,7 +12,7 @@
 
 ### 工程發布與測試工具
 
-共用契約變更會選出 4 個專案的 6 個測試檔；在合成工時下按相依關係和平行分組，預估耗時由 119 降至 88 毫秒。部署前也檢查逐人分流、API 契約、翻譯格式與瀏覽器介面。[模組與操作](https://github.com/peca12968/ci-impact-planner/blob/fa9a2408299b970876d3ea5dba357bcedf69c72b/modules/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45314977388)
+以 Node.js 與 Git 規劃 PR 和提交前測試，分類暫存、未暫存、新增與衝突檔案。用真實 Git 儲存庫驗證搬移會納入兩側，且加入未追蹤的 API 路由後，範例從 3 個增加至 4 個受影響專案。[實作與重跑](https://github.com/peca12968/ci-impact-planner/blob/19b76b8df29b66544f8fe73058b23e233d5663fb/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45328829023)
 
 ### 服務觀測與執行可靠性
 
