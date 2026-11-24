@@ -24,7 +24,7 @@
 
 ### 知識檢索與工單派送
 
-以 SQLite FTS5 檢索中英文手冊，核對片段移位、內容改寫與原檔移除。驗證舊索引可讀取新的原文位置，另以同一批 26 個段落比較全文與向量檢索的範圍限制。[實作與重跑](https://github.com/peca12968/handbook-search/blob/adf7e1ec039d3c08a702d136ea4918114dcf9185/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45325548587)
+以 SQLite FTS5 檢索中英文手冊並核對原文位置。為 TF-IDF 工單模型加入上線關卡，在 11 件獨立評估工單逐筆核對新增誤派、各隊列人工覆核與精確率，並以 SHA-256 保存模型和評估資料的版本依據。[實作與重跑](https://github.com/peca12968/handbook-search/blob/d46fc7f88ab7b9fa0f81d195c9682a7b6680c890/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45334063984)
 
 ### 轉乘規劃與離線地圖
 
