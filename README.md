@@ -6,7 +6,7 @@
 
 ## 依職缺挑一個作品開始
 
-- **後端工程**　用 FastAPI 與 SQLite 在同一時點查兩張訂單和商品庫存。讓另一個實例同時出貨 5 件，核對提交前後的快照、箱單與可用量。[Stockroom Reservations](https://github.com/peca12968/hey-table/tree/main/modules/stockroom-reservations)
+- **後端工程**　以批號查各品項的期限、已出貨量、保留量及可用庫存。用兩個 FastAPI 實例競爭 SQLite 寫入鎖，核對整批取消前後的數量及時間。[Stockroom Reservations](https://github.com/peca12968/hey-table/blob/70f83c0e8c1253d7f0ee5481524d9fc04ee981ca/modules/stockroom-reservations/README.md)
 - **前端工程**　用兩個瀏覽器分頁重現交班衝突，檢查合併後的鍵盤焦點和儲存結果。[交班紀錄與衝突合併](https://github.com/peca12968/handoff-desk)
 - **資料與實驗工程**　從同一份曝光紀錄逐人核對版本並檢查分流比例。[功能分流與曝光稽核](https://github.com/peca12968/ci-impact-planner/tree/main/modules/rollout-lab)
 - **平台與可靠性工程**　在持續寫入的庫存服務取得 SQLite 備份，用實際還原核對已提交的狀態。[庫存復原演練](https://github.com/peca12968/hey-table/tree/main/modules/sqlite-recovery-drill)
@@ -15,7 +15,7 @@
 
 | 作品 | 使用技術 | 可重現的情境 | 驗證 |
 | --- | --- | --- | --- |
-| [禾日食堂｜點餐、營運與倉庫](https://github.com/peca12968/hey-table) | React、Workers、D1、TapPay、FastAPI、SQLite、Kubernetes、MQTT、gRPC | 店員可依管道或桌位暫停新單。顧客保留購物車，已成立的餐單仍可付款和製作。以 D1 交易檢查兩層接單規則，並用版本檢查處理雙店員競爭。 | [實作](https://github.com/peca12968/hey-table/blob/eaa78c18fc2fa40afdb00852489db24dd20d98b7/README.md) · [測試](https://github.com/peca12968/hey-table/blob/eaa78c18fc2fa40afdb00852489db24dd20d98b7/qa/intake.spec.mjs) · [CI](https://github.com/peca12968/hey-table/actions/runs/45347931706) |
+| [禾日食堂｜點餐、營運與倉庫](https://github.com/peca12968/hey-table) | React、Workers、D1、TapPay、FastAPI、SQLite、Kubernetes、MQTT、gRPC | 店員可依管道或桌位暫停新單。倉庫以批號查同一時間點的各品項狀態與庫存。驗證原期限一到，套件餘量釋回，續期的包材仍保留。 | [實作](https://github.com/peca12968/hey-table/blob/70f83c0e8c1253d7f0ee5481524d9fc04ee981ca/modules/stockroom-reservations/README.md) · [測試](https://github.com/peca12968/hey-table/blob/70f83c0e8c1253d7f0ee5481524d9fc04ee981ca/modules/stockroom-reservations/tests/test_reservation_batches.py) · [CI](https://github.com/peca12968/hey-table/actions/runs/45356865776) |
 | [轉乘規劃與離線地圖](https://github.com/peca12968/transfer-clock) | Python、C#、時刻表、球面近鄰、PMTiles、HTTP Range | 在跨午夜的正反查套用已確認的無階梯班次、站點與定向連接，處理電梯連接關閉、延誤及停駛。另支援單車還車與離線地圖。 | [實作](https://github.com/peca12968/transfer-clock/blob/bb7bb50eea3db4d8f6547fd7040babdee491d964/README.md) · [測試](https://github.com/peca12968/transfer-clock/blob/bb7bb50eea3db4d8f6547fd7040babdee491d964/test_connections.py) · [CI](https://github.com/peca12968/transfer-clock/actions/runs/45351701934) |
 | [媒體處理與檔案交付](https://github.com/peca12968/take-splice) | C#、Python、WAVE、WebVTT、ZIP、校驗分片、SHA-256 | 將對時音訊與字幕打包成可重現的 ZIP。以雙重校驗還原指定區間，在完整封存無法讀回的範例中取回 32,768 B 並逐位元組比對。 | [實作](https://github.com/peca12968/take-splice/blob/e4156e31efe2aec7068d005659ff012aa2da84da/modules/shard-rescue/README.md) · [測試](https://github.com/peca12968/take-splice/blob/e4156e31efe2aec7068d005659ff012aa2da84da/modules/shard-rescue/test_rescue.py) · [CI](https://github.com/peca12968/take-splice/actions/runs/45346666679) |
 | [資料回溯與品質查核](https://github.com/peca12968/price-as-of) | DuckDB、SQL、Parquet、Apache Iceberg、PostgreSQL、SQLite、HyperLogLog | 固定同一批舊訂單比較兩個截止點。以 Parquet 交付完整明細與價格來源，區分零差額及無法計價，並驗證並行匯出只發布一份完整報告。 | [實作](https://github.com/peca12968/price-as-of/blob/7f74ff72531426dda6b170c822ee154302ef8305/README.md) · [測試](https://github.com/peca12968/price-as-of/blob/7f74ff72531426dda6b170c822ee154302ef8305/test_parquet.py) · [CI](https://github.com/peca12968/price-as-of/actions/runs/45349531612) |
