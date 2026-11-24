@@ -32,4 +32,4 @@
 
 ### 媒體處理與檔案交付
 
-從 48 kHz 聲道標記量測延遲，按音訊幀剪輯並用瀏覽器核對 WebVTT 字幕。同庫驗證檔案續傳、圖集還原與分塊損壞後的復原。[模組與操作](https://github.com/peca12968/take-splice/blob/0708638ac038716ce1d5dea78bcbbf4188708161/modules/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45313988372)
+以 C# 按音訊幀剪輯 16/24 位元 PCM，加入可選的接點淡出與淡入。用 Python 逐取樣核對單／雙聲道輸出，並在 60,001 幀範例驗證六句 WebVTT 字幕仍對應原剪輯時間軸。[實作與重跑](https://github.com/peca12968/take-splice/blob/49e47ad14c99c6b1d20093915f89966bc4155b33/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45329885516)
