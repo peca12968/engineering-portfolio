@@ -16,7 +16,7 @@
 
 ### 服務觀測與執行可靠性
 
-從重疊輪替日誌重算可用率，將 7 筆逐行計數去重為 5 筆。以固定 UTC 截止日重跑可用率報表，驗證 14 天中只有 11 天有資料時保留觀測值並暫緩達標判定。[實作與重跑](https://github.com/peca12968/slo-window/blob/7d2788d3992850bc8d71c546dfc50aaaf8c37799/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45327819348)
+從重疊輪替日誌重算可用率，將 7 筆逐行計數去重為 5 筆。以 BigInt 比對每日錯誤預算，依超額量排序連續區段。用 Playwright 驗證提高目標、匯入缺少一天的 CSV，以及調整 UTC 截止日後的區段分界。[實作與重跑](https://github.com/peca12968/slo-window/blob/4a35633e1beeb173e49e9ca7301b7327bb390150/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45338519189)
 
 ### 資料回溯與品質查核
 
