@@ -8,7 +8,7 @@
 
 ### 交班與排班工作台
 
-用瀏覽器分頁儲存復原交班草稿，以 HTTP ETag 處理多分頁寫入。Chromium 與 Firefox 共 26 項測試，涵蓋離線重新整理、另一分頁先儲存、寫入回應中斷與三方合併。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/acfd9c6be86f02c34b7d6a918eab693ea6dac2c4/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45324046977)
+用瀏覽器分頁儲存復原交班草稿，並加入歷史對照與舊稿載入。在 Chromium 和 Firefox 共跑 30 個案例，驗證快速切換不會顯示過時回覆，並以 HTTP ETag 檢出並行寫入後逐字核對 SQLite 的四版紀錄。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/e8c317ae66767846130d95c3eb9b70bb37f4cdb0/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45340793118)
 
 ### 工程發布與測試工具
 
