@@ -32,7 +32,7 @@
 
 ### 媒體處理與檔案交付
 
-以 C# 剪輯 16/24 位元 PCM，透過 Python 將 60,001 幀的 WAV 與六句對時後的 WebVTT 字幕打包。使用 SHA-256 和媒體時間軸驗收交付檔，以端對端測試覆蓋位元組重現、字幕被替換及並行發布。[實作與重跑](https://github.com/peca12968/take-splice/blob/af4c2630eb3f1d07f49d866aa926dcd8865c2ece/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45332993223)
+以 C# 剪輯 16/24 位元 PCM，將 WAV 和對時後的 WebVTT 字幕打包並驗證雜湊。以 Python 實作雙重校驗分片的區間還原，完整封存超過修復能力時仍從兩條受損條帶取回 32,768 B，並與原檔逐位元組比對。[實作與重跑](https://github.com/peca12968/take-splice/blob/e4156e31efe2aec7068d005659ff012aa2da84da/modules/shard-rescue/README.md) · [CI](https://github.com/peca12968/take-splice/actions/runs/45346666679)
 
 ### 離線文件轉 HTML
 
