@@ -16,7 +16,7 @@
 
 ### 服務觀測與執行可靠性
 
-從重疊輪替日誌重算可用率，將 7 筆逐行計數去重為 5 筆。以 BigInt 比較同一 UTC 截止日的 2 天與 7 天錯誤預算消耗，保留缺資料及零請求狀態。用 Playwright 驗證調整目標與門檻後，短期及長期判定如何改變。[實作與重跑](https://github.com/peca12968/slo-window/blob/76c1488b10ed86f8bf9e13262af58b830c273395/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45352736689)
+以 React 與 TypeScript 匯入路由級統計，將分項加總到同一 UTC 區間的整體 SLO。以 BigInt 精確核對路由超額、餘額與整體淨差額，並用 Playwright 驗證缺日、零流量、錯誤檔案及舊格式相容。另支援由輪替日誌重算可用率與雙區間消耗比較。[實作與重跑](https://github.com/peca12968/slo-window/blob/5941558af3c98fc4934d251eb37f9b711e537c3a/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45362462438)
 
 ### 資料回溯與品質查核
 
