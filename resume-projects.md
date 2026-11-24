@@ -32,7 +32,7 @@
 
 ### 演算法工程｜Remit Match 無批號匯款追查
 
-在金流合成報表中，兩筆各 60 元的匯款都只有同一個候選批號，兩筆卻不能同時認列。依撥款餘額與日期建立二分圖，從所有最多筆數配法中列出每筆可能批號與落單情形。以 643 組案例的獨立窮舉結果逐筆比對，另驗證 5,000 筆連鎖日期限制，並從上游核帳程式重新產生測試輸入。[配對與跨專案測試](https://github.com/peca12968/remit-match/blob/ec46694f1774e9a4e625d929f4e9c6db95ce14a6/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45275813561)
+依撥款餘額與日期建立二分圖，找出一筆銀行流水在所有最多筆數配法中可能對應的批號。加入銀行查核結果後，以交替路徑重新配對，列出直接排除與受牽動的流水。八筆合成匯款中，兩份回覆改變四筆判斷，仍可配六筆。以 643 組日期案例及 512 種排除組合對照獨立窮舉解，另驗證需要重新安排 5,000 筆的情境。[配對與跨專案測試](https://github.com/peca12968/remit-match/blob/b612aaa65f46f1e931945aee1e6e32f02e870b83/test_remit.py) · [CI](https://github.com/peca12968/remit-match/actions/runs/45294839063)
 
 ### 影像處理與測試工程｜Table Scan Check 桌牌掃碼驗收
 
