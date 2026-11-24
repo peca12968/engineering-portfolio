@@ -1,9 +1,12 @@
 """Verify that every portfolio row points to files from its successful CI run."""
+import argparse
 from pathlib import Path
 import json
 import re
 import subprocess
+import sys
 import time
+from urllib.parse import unquote
 
 BASE = r"https://github\.com/peca12968/"
 REPO = re.compile(BASE + r"([a-z0-9-]+)\)")
@@ -38,28 +41,71 @@ def verify_highlights(text, rows):
             raise ValueError("Resume CI link has no matching evidence")
 
 
-def verify(row):
+def file_presence(prefix, sha, paths, lookup):
+    root = lookup(f"{prefix}/git/trees/{sha}?recursive=1")
+    blobs = {entry["path"] for entry in root["tree"] if entry["type"] == "blob"}
+    if not root["truncated"]:
+        return [path in blobs for path in paths]
+
+    subtrees = {}
+
+    def find(path):
+        if path in blobs:
+            return True
+        revision = root["sha"]
+        pieces = path.split("/")
+        for index, piece in enumerate(pieces):
+            if revision not in subtrees:
+                tree = lookup(f"{prefix}/git/trees/{revision}")
+                if tree["truncated"]:
+                    raise RuntimeError(f"Cannot verify {path} in a truncated Git subtree")
+                subtrees[revision] = {entry["path"]: entry for entry in tree["tree"]}
+            entry = subtrees[revision].get(piece)
+            if index == len(pieces) - 1:
+                return entry is not None and entry["type"] == "blob"
+            if not entry or entry["type"] != "tree":
+                return False
+            revision = entry["sha"]
+        return False
+
+    return [find(path) for path in paths]
+
+
+def verify(row, lookup=api):
     names, files, runs = REPO.findall(row), BLOB.findall(row), RUN.findall(row)
     if len(names) != 1 or len(files) != 2 or len(runs) != 1:
         raise ValueError(f"Expected a project, two files and a CI run: {row}")
     repo = names[0]
     if runs[0][0] != repo or any(owner != repo for owner, _, _ in files):
         raise ValueError(f"{repo}: evidence must belong to the same project")
+    evidence = [
+        {"sha": rev, "path": unquote(path), "exists": None} for _, rev, path in files
+    ]
+    if len({file["path"] for file in evidence}) != 2:
+        raise ValueError(f"{repo}: implementation and test links must point to distinct files")
     prefix = f"repos/peca12968/{repo}"
-    run = api(f"{prefix}/actions/runs/{runs[0][1]}")
-    sha = run["head_sha"]
-    if run["conclusion"] != "success" or any(rev != sha for _, rev, _ in files):
-        raise ValueError(f"{repo}: the linked revision must match a successful run")
-    tree = api(f"{prefix}/git/trees/{sha}?recursive=1")
-    paths = {entry["path"] for entry in tree["tree"] if entry["type"] == "blob"}
-    if any(path not in paths for _, _, path in files):
-        raise ValueError(f"{repo}: source or test file missing at {sha}")
-    print(f"{repo} {sha[:7]} verified")
-    return repo
+    run_id = runs[0][1]
+    run = lookup(f"{prefix}/actions/runs/{run_id}")
+    ci = {"id": run_id, "sha": run["head_sha"], "status": run["status"], "conclusion": run["conclusion"]}
+    issues = []
+    owner_repo = f"peca12968/{repo}"
+    if any((run.get(key) or {}).get("full_name", "").casefold() != owner_repo.casefold()
+           for key in ("repository", "head_repository")):
+        issues.append("repository_mismatch")
+    if ci["status"] != "completed" or ci["conclusion"] != "success":
+        issues.append("ci_not_successful")
+    if any(file["sha"] != ci["sha"] for file in evidence):
+        issues.append("revision_mismatch")
+    if not issues:
+        found = file_presence(prefix, ci["sha"], [file["path"] for file in evidence], lookup)
+        for file, exists in zip(evidence, found):
+            file["exists"] = exists
+        if not all(found):
+            issues.append("file_missing")
+    return {"repository": repo, "ci": ci, "files": evidence, "issues": issues}
 
 
-def main():
-    text = Path(__file__).with_name("README.md").read_text(encoding="utf-8")
+def report(text, highlights, lookup=api):
     header = "| 作品 | 使用技術 | 可重現的情境 | 驗證 |"
     table = text.split(header, 1)[1].strip().split("\n\n", 1)[0].splitlines()
     rows = table[1:]  # The first line contains Markdown column separators.
@@ -68,15 +114,43 @@ def main():
     count = re.search(r"目前收錄 \*\*(\d+)\*\* 個", text)
     if count and int(count[1]) != len(rows):
         raise ValueError(f"Introduction says {count[1]} projects but the table contains {len(rows)}")
-    projects = [verify(row) for row in rows]
-    if len(set(projects)) != len(projects):
+    names = [REPO.findall(row) for row in rows]
+    if any(len(links) != 1 for links in names):
+        raise ValueError("Each portfolio row must link to exactly one project")
+    projects = {links[0] for links in names}
+    if len(projects) != len(rows):
         raise ValueError("Duplicate project row")
     unlisted = set(REPO.findall(text)) - set(projects)
     if unlisted:
         raise ValueError(f"Project links without a verified portfolio row: {sorted(unlisted)}")
-    highlights = Path(__file__).with_name("resume-projects.md").read_text(encoding="utf-8")
     verify_highlights(highlights, rows)
+    entries = [verify(row, lookup) for row in rows]
+    return {"format": "peca12968.portfolio-evidence.v1", "ok": all(not entry["issues"] for entry in entries),
+            "projects": entries}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="write a structured evidence report to stdout")
+    args = parser.parse_args()
+    try:
+        text = Path(__file__).with_name("README.md").read_text(encoding="utf-8")
+        highlights = Path(__file__).with_name("resume-projects.md").read_text(encoding="utf-8")
+        result = report(text, highlights)
+    except (ValueError, RuntimeError) as error:
+        print(str(error), file=sys.stderr)
+        return 2
+    if args.json:
+        print(json.dumps(result, indent=2))
+    else:
+        for entry in result["projects"]:
+            name = entry["repository"]
+            if entry["issues"]:
+                print(f"{name}: {', '.join(entry['issues'])}", file=sys.stderr)
+            else:
+                print(f"{name} {entry['ci']['sha'][:7]} verified")
+    return 0 if result["ok"] else 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

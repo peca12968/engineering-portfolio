@@ -25,6 +25,12 @@
 | [工程發布與測試工具](https://github.com/peca12968/ci-impact-planner) | Git、Node.js、Python、JUnit XML、OpenAPI、Playwright、ICU、Go | 從 Git 變更選出下游測試，再按相依順序列出所需建置。只改網頁時，範例建置 4 個專案，並執行 2 個專案的測試。 | [實作](https://github.com/peca12968/ci-impact-planner/blob/30059a3b31d99df205e75a7da623a7207a77fa8f/README.md) · [測試](https://github.com/peca12968/ci-impact-planner/blob/30059a3b31d99df205e75a7da623a7207a77fa8f/test/build-plan.test.js) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45365392953) |
 | [離線文件轉 HTML](https://github.com/peca12968/document-to-html) | Python、PDFium、Pillow、OpenCV、HTML、Playwright | 桌面與命令列可指定來源頁碼，輸出可搜尋的圖片版或結構化 HTML。保留來源頁碼與 OCR 提醒，並在真實瀏覽器驗證只列印選取頁面。 | [實作](https://github.com/peca12968/document-to-html/blob/c006ecbf49b8aaa28715ac200037eacb5a04fb7d/README.md) · [測試](https://github.com/peca12968/document-to-html/blob/c006ecbf49b8aaa28715ac200037eacb5a04fb7d/tests/test_page_selection.py) · [CI](https://github.com/peca12968/document-to-html/actions/runs/45355375138) |
 
+## 履歷連結稽核
+
+在本機登入 GitHub CLI 後執行 `python verify.py`。想把各項結果交給別的工具處理，可執行 `python verify.py --json`。報告列出每個專案的 CI 執行編號、CI 實際測試的提交、兩個檔案的提交及存在狀態，以及發現的問題。
+
+稽核先確認 CI 已成功完成，並核對及格的提交是否就是履歷所連的版本。如果 GitHub 截斷整棵目錄樹，程式只沿著需要核對的兩條路徑向下查找。已完成稽核但有落差時結束碼為 1。文件格式有誤或 API 無法確認時為 2。當 CI 或提交不符合時，報告以 `null` 表示尚未查核的檔案。
+
 ## 面試展示路線
 
 **地圖與離線讀取**　在 Return Radius 執行換日線範例，說明兩個鄰近站點為何分別落在第 65535 欄與第 0 欄，以及四張圖磚的預算如何決定縮放層級。接著執行 Tile Satchel 的換版測試，展示區段讀取途中回傳新版內容時，既有離線地圖仍可使用。
