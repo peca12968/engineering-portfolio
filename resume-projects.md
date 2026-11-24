@@ -12,7 +12,7 @@
 
 ### 工程發布與測試工具
 
-以 Node.js 與 Git 規劃 PR 和提交前測試，分類暫存、未暫存、新增與衝突檔案。用真實 Git 儲存庫驗證搬移會納入兩側，且加入未追蹤的 API 路由後，範例從 3 個增加至 4 個受影響專案。[實作與重跑](https://github.com/peca12968/ci-impact-planner/blob/19b76b8df29b66544f8fe73058b23e233d5663fb/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45328829023)
+以 Node.js 與 Git 規劃 PR、分支推送及提交前測試。用真實的分岔提交重現強制推送，辨識被移除的舊契約並納入下游 API，讓範例從 3 個增加到 5 個受影響專案。缺少舊提交時改走全量測試，並在 Linux 與 Windows 驗證行為。[實作與重跑](https://github.com/peca12968/ci-impact-planner/blob/79926156a79968704aa19832aae9caeca61ad1ea/README.md) · [CI](https://github.com/peca12968/ci-impact-planner/actions/runs/45345456441)
 
 ### 服務觀測與執行可靠性
 
