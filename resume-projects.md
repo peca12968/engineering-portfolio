@@ -8,7 +8,7 @@
 
 ### 交班與排班工作台
 
-用 JavaScript 依引文與前後文在 SQLite 歷史版本中找回移動的段落。以 Chromium 與 Firefox 驗證四版紀錄的定位、並列、移除、同分頁復原與鍵盤操作。交班紀錄以 HTTP ETag 保護並行修改，排班支援跨時區偏好排序與 iCalendar 匯出。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/6b0856a744761bcd915f670c993274eafd7d6eb8/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45361019668)
+用 JavaScript 接續三方合併，依原稿行位和三方段落文字辨識仍適用的選擇。用 Chromium 與 Firefox 驗證重新整理、第三位值班者競爭寫入，以及取消預覽和手動修改。儲存透過 HTTP ETag 核對版本，並以 SQLite 版本歷史驗證寫入結果。另支援定位歷史引文與跨時區排班。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/49ec7d9eaac73e671ae7511059f0738f41a95b30/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45376782663)
 
 ### 工程發布與測試工具
 
