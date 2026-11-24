@@ -28,7 +28,7 @@
 
 ### 轉乘規劃與離線地圖
 
-以 Python 搜尋跨午夜轉乘，將定向的月台步行規則套用到最早抵達及最晚出發查詢。用 100 份合成班表對照獨立窮舉，並串接 C# 單車站點搜尋，重現轉乘只差一秒就需提早出發的情境。[實作與重跑](https://github.com/peca12968/transfer-clock/blob/da4f4e23bd793149188c5a9501db352e865515ec/README.md) · [CI](https://github.com/peca12968/transfer-clock/actions/runs/45339905886)
+以 Python 搜尋跨午夜轉乘，將已確認的無階梯班次、上下車站與定向連接套用到最早抵達及最晚出發查詢。用合成班表驗證連接關閉後改走直達、指定期限可能無可行路線，並驗證既有 C# 單車站點串接。[實作與重跑](https://github.com/peca12968/transfer-clock/blob/bb7bb50eea3db4d8f6547fd7040babdee491d964/README.md) · [CI](https://github.com/peca12968/transfer-clock/actions/runs/45351701934)
 
 ### 媒體處理與檔案交付
 
