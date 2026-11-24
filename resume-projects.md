@@ -4,7 +4,7 @@
 
 ### 禾日食堂｜點餐、營運與倉庫
 
-整合掃碼內用、自取、LINE Pay 與全支付等示範付款，以 D1 交易與版本檢查實作單桌及接單管道暫停。倉庫用 FastAPI 與 SQLite 整批保留多個商品，並以同一筆交易查詢各品項的出貨、保留、釋回與可用庫存。兩個服務實例並行驗證，快照與整批取消維持一致。[實作與重跑](https://github.com/peca12968/hey-table/blob/70f83c0e8c1253d7f0ee5481524d9fc04ee981ca/modules/stockroom-reservations/README.md) · [CI](https://github.com/peca12968/hey-table/actions/runs/45356865776)
+整合掃碼內用、自取、LINE Pay 與全支付等示範付款。用同一筆 D1 更新提交廚房狀態及時間，驗證兩個並行請求只寫入一筆，手機收據可自動更新，舊餐單也能延續處理。倉庫用 FastAPI 與 SQLite 整批保留多個品項，並在同一筆交易查詢出貨、保留、釋回與可用庫存。[實作與重跑](https://github.com/peca12968/hey-table/blob/fd368ea410e800e296b5da1641815013dfba7720/README.md) · [CI](https://github.com/peca12968/hey-table/actions/runs/45370806343)
 
 ### 交班與排班工作台
 
