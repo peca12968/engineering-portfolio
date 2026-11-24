@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 演算法工程｜Dispatch Window 到期前出貨安排
+
+用子集合動態規劃安排同一包裝台的工單，納入備妥時間、工時、保留量、到期及裝車期限。四張合成訂單中，先包最早到期的單至多出貨 6 件，最佳安排出貨 9 件。以 300 組小案例的獨立窮舉核對解法，並重播 Stockroom 的實際批次 API，驗證到期時刻、三批出貨及舊版保留。[跨專案重播](https://github.com/peca12968/dispatch-window/blob/5537b1664e23a9e0cdbb691102a2bb7168148174/demo.py) · [CI](https://github.com/peca12968/dispatch-window/actions/runs/45298932983)
+
 ### 後端整合｜Return Docket 退貨交接簽章
 
 以 C# 和 ECDSA P-256 封裝庫存服務回傳的批次收據，將班次與每箱件數一併簽章。服務重啟後取回兩批原收據，接班端離線驗證四筆箱別紀錄與六件商品。測試涵蓋件數遭修改、使用錯誤公鑰、八個程序競寫，以及 .NET 與 OpenSSL 雙向驗簽。[Stockroom 整合演練](https://github.com/peca12968/return-docket/blob/f9e052c111c83a4e68b22b374bb6ab7a469eb650/demo.py) · [CI](https://github.com/peca12968/return-docket/actions/runs/45297355064)
