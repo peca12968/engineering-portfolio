@@ -36,4 +36,4 @@
 
 ### 離線文件轉 HTML
 
-以 Python、PDFium 和 OpenCV 將同一份合成申請表轉成保留版面的 PNG 頁面與結構化 HTML。用 Playwright 驗證 320 × 427 像素影像、透明文字層可搜尋，以及 `Name` 與 `Example` 仍位於同一表格列。[實作與重跑](https://github.com/peca12968/document-to-html/blob/4ba5e1969ae21654973567625b1da906070f3442/README.md) · [CI](https://github.com/peca12968/document-to-html/actions/runs/45342510865)
+以 Python、PDFium 和 OpenCV 實作離線文件轉換，讓桌面與命令列可指定頁碼及範圍。圖片版和結構化 HTML 共用選頁邏輯，保留來源頁碼與 OCR 診斷。以 Playwright 核對輸出的搜尋結果及列印頁數。[實作與重跑](https://github.com/peca12968/document-to-html/blob/c006ecbf49b8aaa28715ac200037eacb5a04fb7d/README.md) · [CI](https://github.com/peca12968/document-to-html/actions/runs/45355375138)
