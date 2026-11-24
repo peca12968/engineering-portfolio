@@ -4,11 +4,11 @@
 
 ### 禾日食堂｜點餐、營運與倉庫
 
-手機掃碼內用或線上自取，搭配 LINE Pay、全支付等模擬付款。倉庫以同一份庫存快照規劃揀貨，待揀量在部分出貨及到期後由 8 件降為 3 件。另可重跑離線收貨、MQTT 補回讀值與資料庫事故復原。[模組與操作](https://github.com/peca12968/hey-table/blob/7b18fce37f1315bbe9a4e70b5d756c791a7622bc/modules/README.md) · [CI](https://github.com/peca12968/hey-table/actions/runs/45313987792)
+整合掃碼內用、自取、LINE Pay 與全支付等示範付款。以店員授權和欄位白名單匯出 D1 付款快照，驗證同一檔案可核對兩種日結報表及跨日退款。倉庫同步實物盤點，將已保留的商品計入應盤實體庫存。[實作與重跑](https://github.com/peca12968/hey-table/blob/c875b18026cc891314c062bd6e55b725f6fde06c/README.md) · [CI](https://github.com/peca12968/hey-table/actions/runs/45326691515)
 
 ### 交班與排班工作台
 
-交班遇到 HTTP 412 時可預覽三方合併，保留雙方修改並用 Chromium、Firefox 核對焦點。排班 API 找出跨時區候選並匯出 iCalendar，回撥時兩個 01:00 仍各自對應到正確時刻。[模組與操作](https://github.com/peca12968/handoff-desk/blob/6e9dfaa838b7a9f85f375e707d8416865acc2b0a/modules/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45313987768)
+用瀏覽器分頁儲存復原交班草稿，以 HTTP ETag 處理多分頁寫入。Chromium 與 Firefox 共 26 項測試，涵蓋離線重新整理、另一分頁先儲存、寫入回應中斷與三方合併。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/acfd9c6be86f02c34b7d6a918eab693ea6dac2c4/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45324046977)
 
 ### 工程發布與測試工具
 
@@ -20,11 +20,15 @@
 
 ### 資料回溯與品質查核
 
-在 6,144 筆歷史訂單中依價格與數量縮小到一個 Parquet 分組，逐筆核對 1,024 筆命中。另可驗證 PostgreSQL 漸進遷移、快照與分頁一致性。[模組與操作](https://github.com/peca12968/price-as-of/blob/2ca9294f649536a6ba00b34f9e60b39b3f2d3939/modules/README.md) · [CI](https://github.com/peca12968/price-as-of/actions/runs/45313986867)
+以 DuckDB 雙時間查詢追溯單筆訂單的補登、更正、撤回與來源版本。在 6,144 筆歷史訂單中依價格縮小到一個 Parquet 分組，逐筆核對符合價格與數量的 1,024 筆命中。[實作與重跑](https://github.com/peca12968/price-as-of/blob/d3b8618210d558c75d3ea0b402766802782915b1/README.md) · [CI](https://github.com/peca12968/price-as-of/actions/runs/45322982222)
 
 ### 知識檢索與工單派送
 
-同一批 26 個段落上比較全文與向量檢索，限制現行版本後找回兩段人工標註答案。比對 41 筆工單的 Python 與 ONNX 推論分數和派送決策。[模組與操作](https://github.com/peca12968/handbook-search/blob/7c99b64a5e798fab19d70870acb83afb7c89e807/modules/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45313987362)
+以 SQLite FTS5 檢索中英文手冊，核對片段移位、內容改寫與原檔移除。驗證舊索引可讀取新的原文位置，另以同一批 26 個段落比較全文與向量檢索的範圍限制。[實作與重跑](https://github.com/peca12968/handbook-search/blob/adf7e1ec039d3c08a702d136ea4918114dcf9185/README.md) · [CI](https://github.com/peca12968/handbook-search/actions/runs/45325548587)
+
+### 轉乘規劃與離線地圖
+
+以 Python 搜尋跨午夜轉乘，加入班次延誤、停駛與到站期限。串接 C# 的單車站點搜尋後，以端對端測試驗證因轉乘時間只差一秒而改用直達車的情境。[實作與重跑](https://github.com/peca12968/transfer-clock/blob/6480aa2bbb6c0c4cfd01098227bcced2c100faa0/README.md) · [CI](https://github.com/peca12968/transfer-clock/actions/runs/45324797895)
 
 ### 媒體處理與檔案交付
 
