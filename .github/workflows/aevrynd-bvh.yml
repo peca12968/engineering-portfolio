@@ -1,0 +1,54 @@
+name: Verify Aevrynd native BVH evidence
+on:
+  push:
+    paths:
+      - examples/aevrynd-bvh/**
+      - .github/workflows/aevrynd-bvh.yml
+  pull_request:
+    paths:
+      - examples/aevrynd-bvh/**
+      - .github/workflows/aevrynd-bvh.yml
+permissions:
+  contents: read
+jobs:
+  native-bvh:
+    runs-on: windows-2025
+    env:
+      GIT_LFS_SKIP_SMUDGE: "1"
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - id: sample
+        shell: pwsh
+        run: |
+          $source = Get-Content -Raw -LiteralPath examples/aevrynd-bvh/sample.json | ConvertFrom-Json
+          if ($source.engine_sha -notmatch '^[a-f0-9]{40}$') { throw 'Aevrynd ref must be an exact commit' }
+          "ref=$($source.engine_sha)" >> $env:GITHUB_OUTPUT
+      - uses: actions/checkout@v7
+        with:
+          repository: peca12968/Aevrynd
+          ref: ${{ steps.sample.outputs.ref }}
+          path: aevrynd-reference
+          persist-credentials: false
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /engine/native/include/
+            /engine/native/src/
+            /engine/native/tests/MeshRaycastBvhBenchmark.cpp
+            /engine/native/tests/MeshRaycastBvhSmoke.cpp
+      - name: Compile and verify native evidence
+        shell: pwsh
+        run: |
+          $actual = & ./examples/aevrynd-bvh/capture.ps1 -EngineRoot aevrynd-reference | ConvertFrom-Json
+          $example = Get-Content -Raw -LiteralPath examples/aevrynd-bvh/sample.json | ConvertFrom-Json
+          if ($actual.engine_sha -ne $example.engine_sha -or $actual.benchmark.triangles -ne $example.benchmark.triangles -or
+              $actual.benchmark.queries -ne $example.benchmark.queries -or $actual.probe.triangles -ne $example.probe.triangles) {
+              throw 'Benchmark inputs differ from the published evidence'
+          }
+          $actualStages = @($actual.probe.stages | ForEach-Object { "$($_.phase):$($_.object):$($_.builds)" })
+          $exampleStages = @($example.probe.stages | ForEach-Object { "$($_.phase):$($_.object):$($_.builds)" })
+          if (($actualStages -join '/') -ne ($exampleStages -join '/')) {
+              throw 'Native cache transitions differ from the published evidence'
+          }
+          $actual | ConvertTo-Json -Depth 8

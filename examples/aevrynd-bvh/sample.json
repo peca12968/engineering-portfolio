@@ -1,0 +1,42 @@
+{
+  "engine_sha": "6833d0a2a6d74322c150f4293dd5f681aaf5dee0",
+  "msvc": 1944,
+  "benchmark": {
+    "triangles": 32768,
+    "queries": 512,
+    "average_candidates": 16,
+    "average_nodes": 23
+  },
+  "probe": {
+    "triangles": 8192,
+    "stages": [
+      {
+        "phase": "first",
+        "object": 0,
+        "builds": 1,
+        "candidates": 64,
+        "nodes": 27,
+        "cache_before_bytes": 0,
+        "cache_after_bytes": 884696
+      },
+      {
+        "phase": "reuse",
+        "object": 1,
+        "builds": 0,
+        "candidates": 32,
+        "nodes": 25,
+        "cache_before_bytes": 884696,
+        "cache_after_bytes": 884696
+      },
+      {
+        "phase": "rebuild",
+        "object": 0,
+        "builds": 1,
+        "candidates": 64,
+        "nodes": 27,
+        "cache_before_bytes": 0,
+        "cache_after_bytes": 884696
+      }
+    ]
+  }
+}
