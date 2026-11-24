@@ -16,7 +16,7 @@
 
 ### 服務觀測與執行可靠性
 
-從重疊的輪替日誌重算服務可用率，將 7 筆逐行計數去重為 5 筆，畫面由 57.143% 更新為 60.000%。同庫重跑追蹤時鐘差、佇列接管與快取競爭。[模組與操作](https://github.com/peca12968/slo-window/blob/b5e6f931624d66a345063a5882b5160c4fdbbc4a/modules/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45313987359)
+從重疊輪替日誌重算可用率，將 7 筆逐行計數去重為 5 筆。以固定 UTC 截止日重跑可用率報表，驗證 14 天中只有 11 天有資料時保留觀測值並暫緩達標判定。[實作與重跑](https://github.com/peca12968/slo-window/blob/7d2788d3992850bc8d71c546dfc50aaaf8c37799/README.md) · [CI](https://github.com/peca12968/slo-window/actions/runs/45327819348)
 
 ### 資料回溯與品質查核
 
