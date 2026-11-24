@@ -2,6 +2,10 @@
 
 以下為 AI 輔助開發的個人作品。數字來自可重跑的合成案例與自動化測試。
 
+### 後端整合｜Return Docket 退貨交接簽章
+
+以 C# 和 ECDSA P-256 封裝庫存服務回傳的批次收據，將班次與每箱件數一併簽章。服務重啟後取回兩批原收據，接班端離線驗證四筆箱別紀錄與六件商品。測試涵蓋件數遭修改、使用錯誤公鑰、八個程序競寫，以及 .NET 與 OpenSSL 雙向驗簽。[Stockroom 整合演練](https://github.com/peca12968/return-docket/blob/f9e052c111c83a4e68b22b374bb6ab7a469eb650/demo.py) · [CI](https://github.com/peca12968/return-docket/actions/runs/45297355064)
+
 ### 資料工程｜Plate Cost 套餐與逐菜食材成本
 
 串接點餐收據、SQLite 退餐帳與版本化食譜，依各批半成品的產量拆算原料。用分數保留昆布、醬汁等用量，將逐菜分攤的尾差對回整單。345 元的套餐範例共耗用八項原料，標準食材成本為 96.87 元。以另一套備料程式核對每項耗用量，並驗證退餐、撤銷與供應商改價後的結果。[跨專案驗證](https://github.com/peca12968/plate-cost/blob/6a938bb357144efdea4aeb6b06ed30bd0a9c0ee5/demo.py) · [CI](https://github.com/peca12968/plate-cost/actions/runs/45295810794)
