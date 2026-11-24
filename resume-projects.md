@@ -8,7 +8,7 @@
 
 ### 交班與排班工作台
 
-用瀏覽器分頁儲存復原交班草稿，並加入歷史對照與舊稿載入。在 Chromium 和 Firefox 共跑 30 個案例，驗證快速切換不會顯示過時回覆，並以 HTTP ETag 檢出並行寫入後逐字核對 SQLite 的四版紀錄。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/e8c317ae66767846130d95c3eb9b70bb37f4cdb0/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45340793118)
+用 ASP.NET Core 依全程出席與時段偏好排序跨時區交班，透過 UTC 分鐘計算夏令時間回撥的兩個同名時段，再用 Python 與獨立 JavaScript 解析器核對 iCalendar。交班紀錄另以 HTTP ETag 保護並行修改，並可從 SQLite 查閱歷史版本。[實作與重跑](https://github.com/peca12968/handoff-desk/blob/026e196b1030b7d48605b2155befaca702ed911c/modules/overlap-hours/README.md) · [CI](https://github.com/peca12968/handoff-desk/actions/runs/45350677521)
 
 ### 工程發布與測試工具
 
