@@ -107,7 +107,10 @@ def verify(row, lookup=api):
 
 def report(text, highlights, lookup=api):
     header = "| 作品 | 使用技術 | 可重現的情境 | 驗證 |"
-    table = text.split(header, 1)[1].strip().split("\n\n", 1)[0].splitlines()
+    _, marker, body = text.partition(header)
+    if not marker:
+        raise ValueError("Missing portfolio table header")
+    table = body.strip().split("\n\n", 1)[0].splitlines()
     rows = table[1:]  # The first line contains Markdown column separators.
     if not rows:
         raise ValueError("No portfolio rows found")
@@ -137,7 +140,7 @@ def main():
         text = Path(__file__).with_name("README.md").read_text(encoding="utf-8")
         highlights = Path(__file__).with_name("resume-projects.md").read_text(encoding="utf-8")
         result = report(text, highlights)
-    except (ValueError, RuntimeError) as error:
+    except (OSError, ValueError, RuntimeError) as error:
         print(str(error), file=sys.stderr)
         return 2
     if args.json:

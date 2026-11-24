@@ -86,6 +86,8 @@ class VerifyTest(unittest.TestCase):
         self.assertEqual(result["projects"][0]["issues"], ["ci_not_successful"])
         with self.assertRaisesRegex(ValueError, "Resume evidence"):
             report(text, resume.replace("runs/42", "runs/18"), self.fixture())
+        with self.assertRaisesRegex(ValueError, "Missing portfolio table header"):
+            report("", resume, self.fixture())
 
 
 if __name__ == "__main__":
