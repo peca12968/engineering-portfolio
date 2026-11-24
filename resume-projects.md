@@ -4,7 +4,7 @@
 
 ### 演算法工程｜Dispatch Window 到期前出貨安排
 
-用子集合動態規劃安排同一包裝台的工單，納入備妥時間、工時、保留量、到期及裝車期限。四張合成訂單中，先包最早到期的單至多出貨 6 件，最佳安排出貨 9 件。以 300 組小案例的獨立窮舉核對解法，並重播 Stockroom 的實際批次 API，驗證到期時刻、三批出貨及舊版保留。[跨專案重播](https://github.com/peca12968/dispatch-window/blob/5537b1664e23a9e0cdbb691102a2bb7168148174/demo.py) · [CI](https://github.com/peca12968/dispatch-window/actions/runs/45298932983)
+從 Stockroom 擷取四張訂單的同時點快照，以子集合動態規劃安排包裝台。先包最早到期的單至多出貨 6 件，最佳安排可出貨 9 件。以 300 組小案例的獨立窮舉核對解法，再由實際批次 API 驗證到期時刻、三批出貨與舊版保留。[跨專案重播](https://github.com/peca12968/dispatch-window/blob/7cbcb0e4e0646d3855548657739c7a16a7c69d03/demo.py) · [CI](https://github.com/peca12968/dispatch-window/actions/runs/45299659845)
 
 ### 後端整合｜Return Docket 退貨交接簽章
 
@@ -56,7 +56,7 @@
 
 ### 後端工程｜Stockroom Reservations
 
-以 FastAPI 和 SQLite 實作跨訂單的整批出貨與退貨驗收。各箱收據及庫存異動共同提交，最後一箱驗收失敗則整批回滾。讓兩個服務實例同時送出 12 次請求，模擬兩個批次和單箱退貨爭用同一箱。一次建立、三次取回原收據，另外八次回傳衝突。驗證舊版單箱收據與服務重啟後的批次查詢。[退貨與並行測試](https://github.com/peca12968/stockroom-reservations/blob/dca1d863b07e2a14c9e79b62453886cd3c8b8866/tests/test_return_batches.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45296475289)
+以 FastAPI 和 SQLite 實作跨訂單整批出貨與退貨驗收。各箱收據及庫存異動共同提交，最後一箱驗收失敗則整批回滾。另以同一筆交易擷取多張訂單的箱單與庫存，測試另一服務同時提交 5 件出貨時，前後快照各自維持完整，舊版無期限保留可與新版保留一併讀取。[快照與並行測試](https://github.com/peca12968/stockroom-reservations/blob/7b6a21c3e94f0ce44f9a179ea6a223150ecb7967/tests/test_packing_snapshots.py) · [CI](https://github.com/peca12968/stockroom-reservations/actions/runs/45299578855)
 
 設計唯讀的跨版本庫存對帳工具，從期初與期末快照重建每個商品的實體與可用量。以 20 件的範例區分進貨、出貨、退回、保留與到期，並找出總量吻合時兩張箱單的變動。整批退貨測試再用出貨後的快照核對全部 5 件入庫，實體與可用量均回到 20 件。
 
